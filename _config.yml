@@ -3,8 +3,8 @@ title: Develop Freedom
 header-img: img/home-bg.jpg
 email: me@shubhamchaudhary.in
 description: "Develop Freedom - Blog by Shubham Chaudhary"
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://developfreedom.org" # the base hostname & protocol for your site
+baseurl: "/blog" # the subpath of your site, e.g. /blog/
+url: "http://shubhamchaudhary.in/" # the base hostname & protocol for your site
 twitter_username: ChaudharySimply
 github_username:  shubhamchaudhary
 facebook_username:  ShubhamChaudhary.in
