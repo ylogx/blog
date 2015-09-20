@@ -27,8 +27,12 @@ public interface Rocker {
 }
 {% endhighlight %}
 
+See enums are type-safe, you can not assign anything else other than
+predefined Enum constants to an Enum variable. It is compiler error to assign
+something else.
 It's so clean. I know what `letsRock` wants. It can only take `POP`, `ROCK` or
-`JAZZ`. It's like this piece of code is talking to me.
+`JAZZ`. It's like this piece of code is talking to me _(readability)_.
+
 Now look at this ugly piece of shit:
 
 {% highlight java %}
