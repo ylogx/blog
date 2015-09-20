@@ -20,8 +20,8 @@ Let us look at this dummy code for instance:
 public enum MusicType {
     POP,
     ROCK,
-    JAZZ
-};
+    JAZZ;
+}
 public interface Rocker {
     void letsRock(MusicType musicType);
 }
