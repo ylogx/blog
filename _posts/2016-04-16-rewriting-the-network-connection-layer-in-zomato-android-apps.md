@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Rewriting the Network Layer in Zomato Android Apps
-subtitle: Motivation and analysis behind the android network layer reimplementation at Zomato
+subtitle: Motivation, analysis and the approach towards the android network layer reimplementation at Zomato
 date: '2016-04-16T00:00:00.000+05:30'
 author: Shubham Chaudhary @ Zomato
 permalink: zomato/android/network
@@ -14,7 +14,7 @@ tags:
 ---
 
 
-<p style="text-align: center; font-style: italic;">This is a <a href="https://engineering.zomato.com/rewriting-the-network-connection-layer-in-our-android-apps-11771c71012">cross post</a> from Zomato Engineering Blog</p>
+<p style="text-align: center; font-style: italic;">This is one of the very first project picked by me during my first few months at Zomato. This is a <a href="https://engineering.zomato.com/rewriting-the-network-connection-layer-in-our-android-apps-11771c71012">cross post</a> from Zomato Engineering Blog</p>
 
 
 Given the large number of features we have in our apps, performance is of prime importance, and it’s something we look at very closely. We’re constantly tinkering with various components of the app to improve speed, reduce the memory footprint, and optimise battery usage. We’ve often found that networking proves to be a big bottleneck when it comes to the speed of our app. Efficient networking can not only speed up the app, but also save considerable network bandwidth.
@@ -22,11 +22,11 @@ Given the large number of features we have in our apps, performance is of prime 
 Recently, we got down to identifying areas of improvement in the network operations being performed throughout our [Android app](http://www.zomato.com/mobile). We can split a network operation in the three broad parts –
 
 
-1. Opening a connection using an HTTP client. We use Apache as the HTTP client.
-1. Fetching API responses on background threads. We went with the standard AsyncTask class for fetching API responses.
-1. Parsing responses into Java objects. Our app uses the <a style="text-align: center; text-decoration: underline; font-style: italic;" href="http://vtd-xml.sourceforge.net/">VTD-XML parser</a> for parsing XML data in API.
+1. Opening a connection using an HTTP client. Our apps used Apache as the HTTP client.
+1. Fetching API responses on background threads. Our apps used the standard AsyncTask class for fetching API responses.
+1. Parsing responses into Java objects. Our apps used the <a style="text-align: center; text-decoration: underline; font-style: italic;" href="http://vtd-xml.sourceforge.net/">VTD-XML parser</a> for parsing XML data in API.
 
-We considered each of these components one by one, looked at the specifics, and dug deep to understand what we could optimise and improve. Let’s look at each one in detail.
+As soon as we picked up this project, we knew that there was a lot of work that had been pushed too long. We considered each of these components one by one, looked at the specifics, analysed all the alternatives available and dug deep to understand what we could optimise and improve. Let’s look at each one of these three aspects in detail.
 
 # Aspect #1. Making a Network Connection
 
@@ -54,10 +54,12 @@ A considerable part of our development time was being spent on writing the custo
 
 To come up with a simpler and quicker parsing strategy, we considered various techniques. The areas of improvement included the speed of parsing, effort during development phase, the number of lines of code, and readability of code.
 
-We considered a few approaches, and it came down to three contenders in a showdown — XML, GSON, and Jackson. To validate each of these, we used one of our heaviest API calls — parsing the menus of one of the largest restaurant chains on Zomato, with each of the three approaches. The screenshots below show the results from the custom showdown app. Each row shows the time it took to parse the API response (in ms).
+We considered a few approaches, and it came down to three contenders in a showdown — XML, GSON, and Jackson. To validate each of these, we used one of our heaviest API calls — parsing the menus of one of the largest restaurant chains on Zomato, with each of the three approaches. We built a custom app to hit this api multiple times to test our options in real life scenario.
 
 
 ![Showdown of parsers](https://cdn-images-1.medium.com/max/1600/1*U4vgOAGKjSUuSOtJ8_uv0w.png)
+
+The screenshots above show the results from the custom showdown app. Each row shows the time it took to parse the API response (in ms).
 
 1. The first column represents the XML data being parsed with the [vtd-xml parser](http://vtd-xml.sourceforge.net/)
 1. The second column results are from parsing with GSON v2.5
