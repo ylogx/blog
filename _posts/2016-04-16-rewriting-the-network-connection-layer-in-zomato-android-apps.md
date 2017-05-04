@@ -19,7 +19,7 @@ tags:
 
 Given the large number of features we have in our apps, performance is of prime importance, and it’s something we look at very closely. We’re constantly tinkering with various components of the app to improve speed, reduce the memory footprint, and optimise battery usage. We’ve often found that networking proves to be a big bottleneck when it comes to the speed of our app. Efficient networking can not only speed up the app, but also save considerable network bandwidth.
 
-Recently, we got down to identifying areas of improvement in the network operations being performed throughout our [Android app](http://www.zomato.com/mobile). We can split a network operation in the three broad parts –
+Recently, we got down to identifying areas of improvement in the network operations being performed throughout our [Android app][zdroid-apps]. We can split a network operation in the three broad parts –
 
 
 1. Opening a connection using an HTTP client. Our apps used Apache as the HTTP client.
@@ -30,9 +30,9 @@ As soon as we picked up this project, we knew that there was a lot of work that 
 
 # Aspect #1. Making a Network Connection
 
-With Apache being [deprecated starting with Android 6.0](http://developer.android.com/about/versions/marshmallow/android-6.0-changes.html#behavior-apache-http-client), we had to go with a new HTTP client. We picked the familiar [OkHttp](http://square.github.io/okhttp/) as the HTTP client for our Android apps. Now, making such a big change isn’t straightforward, and involves reworking large parts of the codebase. However, our code was structured in a way that abstracted the underlying HTTP client from the rest of the codebase, which made it easy for us to change the HTTP client without moving much — a practice we follow to be future-safe.
+With Apache being [deprecated starting with Android 6.0][apache-deprecation], we had to go with a new HTTP client. We picked the familiar [OkHttp][okhttp] as the HTTP client for our Android apps. Now, making such a big change isn’t straightforward, and involves reworking large parts of the codebase. However, our code was structured in a way that abstracted the underlying HTTP client from the rest of the codebase, which made it easy for us to change the HTTP client without moving much — a practice we follow to be future-safe.
 
-Earlier, with Apache, we had implemented GZIP compression for all the HTTP requests and responses on our own. OkHttp does this by default, so changing the HTTP client from Apache to OkHttp reduced our average response time by 30%, which is a huge improvement. Keeping up with the [times](https://twitter.com/ylogx/status/695871769928867842), we enabled [HTTP/2.0](https://http2.github.io/) on our web servers, and this was a further advantage as OkHttp also enabled socket sharing for all connections to the same host.
+Earlier, with Apache, we had implemented GZIP compression for all the HTTP requests and responses on our own. OkHttp does this by default, so changing the HTTP client from Apache to OkHttp reduced our average response time by 30%, which is a huge improvement. Keeping up with the [times][zomato-on-http2-announcement], we enabled [HTTP/2.0][http2] on our web servers, and this was a further advantage as OkHttp also enabled socket sharing for all connections to the same host.
 
 This change was substantiated soon after, when OkHttp became the engine that powers the default Android HTTP client [HttpUrlConnection](https://twitter.com/jakewharton/status/482563299511250944) as of Android 4.4.
 
@@ -61,9 +61,9 @@ We considered a few approaches, and it came down to three contenders in a showdo
 
 The screenshots above show the results from the custom showdown app. Each row shows the time it took to parse the API response (in ms).
 
-1. The first column represents the XML data being parsed with the [vtd-xml parser](http://vtd-xml.sourceforge.net/)
+1. The first column represents the XML data being parsed with the [vtd-xml parser][vtd-xml]
 1. The second column results are from parsing with GSON v2.5
-1. The third column are results from parsing with [Jackson](https://github.com/FasterXML/jackson-core) v2.7.1
+1. The third column are results from parsing with [Jackson][jackson] v2.7.1
 
 GSON emerged as the winner, but then again, the transition to GSON wasn’t going to be easy. We had to rewrite some parts of our backend API and Android code in a GSON-ready format.
 
@@ -81,3 +81,10 @@ We’ve already implemented this in our [Zomato for Business app](https://www.zo
 We’d like to extend our thanks to all the open source projects mentioned in the post, and to the power of collaborative open source programming.
 
 [showdown-img]: {{site.baseurl}}/img/zomato-android-network-showdown.png
+[vtd-xml]: http://vtd-xml.sourceforge.net/
+[okhttp]: http://square.github.io/okhttp/
+[apache-deprecation]: http://developer.android.com/about/versions/marshmallow/android-6.0-changes.html#behavior-apache-http-client
+[zdroid-apps]: http://www.zomato.com/mobile
+[zomato-on-http2-announcement]: https://twitter.com/ylogx/status/695871769928867842
+[http2]: https://http2.github.io/
+[jackson]: https://github.com/FasterXML/jackson-core
