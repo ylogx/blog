@@ -57,7 +57,7 @@ To come up with a simpler and quicker parsing strategy, we considered various te
 We considered a few approaches, and it came down to three contenders in a showdown — XML, GSON, and Jackson. To validate each of these, we used one of our heaviest API calls — parsing the menus of one of the largest restaurant chains on Zomato, with each of the three approaches. We built a custom app to hit this api multiple times to test our options in real life scenario.
 
 
-![Showdown of parsers](http://i.imgur.com/D1978vB.png)
+![Showdown of parsers][showdown-img]
 
 The screenshots above show the results from the custom showdown app. Each row shows the time it took to parse the API response (in ms).
 
@@ -79,3 +79,5 @@ After this exercise, our network layer now looks like this:
 We’ve already implemented this in our [Zomato for Business app](https://www.zomato.com/business/apps), and we’re currently in the process of making this change in all our other apps on the Android platform, to help improve performance across the board.
 
 We’d like to extend our thanks to all the open source projects mentioned in the post, and to the power of collaborative open source programming.
+
+[showdown-img]: {{site.baseurl}}/img/zomato-android-network-showdown.png
