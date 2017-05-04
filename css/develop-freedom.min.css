@@ -1,6 +1,6 @@
 /*!
  * Develop Freedom v1.0.0 (http://developfreedom.org)
- * Copyright 2015 Shubham Chaudhary
+ * Copyright 2017 Shubham Chaudhary
  * Licensed under Apache 2.0 (https://github.com/shubhamchaudhary/blog/blob/gh-pages/LICENSE)
  */
 
