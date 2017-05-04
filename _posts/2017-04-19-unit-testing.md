@@ -1,17 +1,22 @@
 ---
 layout: post
-title: Android Unit Testing
-subtitle: Is it really that freaking hard, No.
+title: Unit Testing
+subtitle: 'Is it really that freaking hard, No.'
 date: '2015-08-28T00:00:00.000+05:30'
 author: Shubham Chaudhary
+permalink: unit-testing
 comments: true
 tags:
-- android
-- testing
-- unittest
-- unit test
-- robolectric
+  - android
+  - testing
+  - unittest
+  - unit test
+  - robolectric
 ---
+
+I have been planning to write this post since August, 2015. A lot has gone by
+since then. I was working on Android apps back then. Since then I have moved
+from working on backend apis, to working on machine learning applications.
 
 > Is it really so hard to unit test android application?
 
@@ -33,6 +38,11 @@ If only you had something that could tell that _stupid_ fellow that field
 <code>mOnlyPositiveInteger</code> should never be set to negative.
 
 > How?
+Writing tests in a completely untested codebase:
+* Start by writing tests for most trivial stuff.
+* Building the entire framework for testing is the most crucial step 0
+* Slowly and gradually start writing tests for complicated stuff
+* In no time, you'll be writing tests for all new code that you write
 
 > What should I be testing?
 
@@ -48,3 +58,6 @@ No it isn't hard. You're just lazy. It's fun to write code.
 
 > Wait, FTW is unit testing.
 Really, well go check this out.
+
+
+<!-- TODO: Quora link for two developers. -->
