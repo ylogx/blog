@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Using TypeDef Annotation to avoid enums
-subtitle: Enums are bad. See how to replace enum with integer constants.
+subtitle: Retaining readability of enums even with integer constants.
 date: '2015-09-20T00:00:00.000+05:30'
 permalink: typedef-annotation
 author: Shubham Chaudhary
@@ -108,6 +108,6 @@ the links below to know more.
 1. [See this Android performance patterns talk to know more.][pref-matters]
 1. [Checkout the documentation for support annotations][support-annotations]
 
-[typedef-error]: {{site.baseurl}}/img/android-typedef.png
 [pref-matters]: https://www.youtube.com/watch?v=Hzs6OBcvNQE
 [support-annotations]: http://tools.android.com/tech-docs/support-annotations
+[typedef-error]: {{site.baseurl}}/img/android-typedef.png
