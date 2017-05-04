@@ -57,7 +57,7 @@ To come up with a simpler and quicker parsing strategy, we considered various te
 We considered a few approaches, and it came down to three contenders in a showdown — XML, GSON, and Jackson. To validate each of these, we used one of our heaviest API calls — parsing the menus of one of the largest restaurant chains on Zomato, with each of the three approaches. We built a custom app to hit this api multiple times to test our options in real life scenario.
 
 
-![Showdown of parsers](https://cdn-images-1.medium.com/max/1600/1*U4vgOAGKjSUuSOtJ8_uv0w.png)
+![Showdown of parsers](http://i.imgur.com/D1978vB.png)
 
 The screenshots above show the results from the custom showdown app. Each row shows the time it took to parse the API response (in ms).
 
