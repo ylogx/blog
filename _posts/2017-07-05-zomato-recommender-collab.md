@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Recommender Systems - Matrix Factorization
-subtitle: Matrix Factorization technique
+title: Recommender Systems - Collaborative Filtering
+subtitle: Collaborative Filtering with Co-occurence matrix and Matrix Factorization
 date: '2017-07-05T00:00:00.000+05:30'
 author: Shubham Chaudhary
-permalink: zomato/recommender/matrix-factorization
+permalink: zomato/recommender/collab
 comments: true
 tags:
   - zomato
@@ -39,6 +39,7 @@ The simplest way to explain Jaccard index is that if you have two sets of users 
 {% highlight python %}
 jaccard_index = users_i.intersection(user_j) / users_i.union(users_j)
 {% endhighlight %}
+
 
 ## Matrix factorization
 The crux of matrix factorization is that you can split a huge sparse [implicit data][implicit-data] matrix into two smaller matrices.
@@ -88,6 +89,7 @@ recommendations = model.recommend(userid, item_user_data.T)
 # find related items
 related = model.similar_items(itemid)
 {% endhighlight %}
+
 
 [overview-post]: {{site_url}}/zomato/recommender/overview
 [implicit-data]: {{site_url}}/zomato/recommender/overview#implicit-feedback
