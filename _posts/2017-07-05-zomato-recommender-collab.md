@@ -5,6 +5,7 @@ subtitle: Collaborative Filtering with Co-occurence matrix and Matrix Factorizat
 date: '2017-07-05T00:00:00.000+05:30'
 author: Shubham Chaudhary
 permalink: zomato/recommender/collab
+header-img: img/recommenders/low-rank-matrix-factorization-darker-for-bg.png
 comments: true
 tags:
   - zomato
