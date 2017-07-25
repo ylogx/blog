@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Recommender Systems - Overview
-subtitle: Overview of recommender system in 2017
+subtitle: Overview of recommender system in 2017 and related jargon
 date: '2017-06-12T00:00:00.000+05:30'
 author: Shubham Chaudhary
 permalink: zomato/recommender/overview
