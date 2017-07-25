@@ -5,6 +5,7 @@ subtitle: Motivation, analysis and the approach towards the android network laye
 date: '2016-04-16T00:00:00.000+05:30'
 author: Shubham Chaudhary @ Zomato
 permalink: zomato/android/network
+header-img: img/zomato-android-network-showdown-darker-for-bg.png
 comments: true
 tags:
 - android
