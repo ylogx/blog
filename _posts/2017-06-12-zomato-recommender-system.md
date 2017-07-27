@@ -50,7 +50,7 @@ Keeping the same analogy, when I search for an app on the app store and I click 
 
 
 ## Evolution of recommender systems
-The very first recommender systems were optimized to accurately predict the rating users was going to give to any given item. This gave rise to the famous million dollars [_Netflix Prize_][netflix-prize] competition.
+The recommender systems can optimized to accurately predict the rating users was going to give to any given item. This gave rise to the famous million dollars [_Netflix Prize_][netflix-prize] competition.
 
 ![evolution-of-recommender-systems][evolution-of-recommender-systems]
 
