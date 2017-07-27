@@ -60,6 +60,12 @@ But as time evolved, the relevancy of optimizing for ratings reduced. Case in po
 ## Learning to rank
 [Learning to rank][ltr-wiki] aims to apply machine learning to create models for ranking data. More concretely, given a training data that consists of lists of items in some order, the ranking model's purpose is to rank/reorder the items in new, unseen lists in a way which is "similar" to rankings in the training data in some sense.
 
+## Types of recommenders
+![Types of recommenders](http://i.imgur.com/79xz1aG.png)
+
+### Problems with different recommenders
+![Problems with recommenders](http://i.imgur.com/AmGSvfs.png)
+
 
 ## Papers
 Google Scholars has [a comprehensive list][scholars-recommender-systems] of authors with influential papers in the field of recommender systems.
