@@ -144,6 +144,9 @@ vim /etc/fstab
 > LABEL=cloudimg-rootfs	/	 ext4	defaults	0 0
 > *UUID=b38e5f52-6aed-43ae-80dd-9eb8246a1511   /home/admin/path/new_disk ext4 defaults 0 0*
 
+
+As per the man page `defaults` options are: rw, suid, dev, exec, auto, nouser, and async.
+
 Read more about [fstab here](https://wiki.archlinux.org/index.php/Fstab)
 
 
