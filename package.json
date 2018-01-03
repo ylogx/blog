@@ -6,7 +6,7 @@
   "author": "Shubham Chaudhary",
   "license": {
     "type": "Apache 2.0",
-    "url": "https://github.com/shubhamchaudhary/blog/blob/gh-pages/LICENSE"
+    "url": "https://github.com/ylogx/blog/blob/gh-pages/LICENSE"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -17,6 +17,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/shubhamchaudhary/blog.git"
+    "url": "https://github.com/ylogx/blog.git"
   }
 }

@@ -6,7 +6,7 @@ description: "Develop Freedom - Blog by Shubham Chaudhary"
 baseurl: "/blog" # the subpath of your site, e.g. /blog/
 url: "http://shubham.chaudhary.xyz" # the base hostname & protocol for your site
 twitter_username: ylogx
-github_username:  shubhamchaudhary
+github_username: ylogx
 facebook_username:  ShubhamChaudhary.in
 
 # Build settings
