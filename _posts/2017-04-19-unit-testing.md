@@ -47,8 +47,6 @@ One of the technique that has been really helpful for me is to -- first write te
 
 No it isn't hard. You're just lazy. It's fun to write code.
 
-# #
-
 > Wait, FTW is unit testing. Really, well go check this out.
 
 <!-- TODO: Quora link for two developers. -->
