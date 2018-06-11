@@ -11,6 +11,7 @@ tags:
   - summary
   - lstm
   - cnn
+  - ml
 ---
 
 This is a summary for the research paper [End-to-End Interpretation of the French Street Name Signs Dataset][paper-ete-fsns].

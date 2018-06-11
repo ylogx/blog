@@ -8,6 +8,7 @@ permalink: zomato/android/network
 header-img: img/zomato-android-network-showdown-darker-for-bg.png
 comments: true
 tags:
+- zomato
 - android
 - network
 - json
