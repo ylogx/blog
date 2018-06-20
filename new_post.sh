@@ -2,19 +2,17 @@
 set -eux
 
 function create_new_post() {
-    echo "
-    ---
-    layout: post
-    title: <Models - Support Vector Machine>
-    subtitle: <Discuss support vector machine and more. One model every week.>
-    date: '$(date +%FT%T.%N%:z)'
-    author: Shubham Chaudhary
-    permalink: <>
-    comments: true
-    tags:
-      - <>
-    ---
-    " > "${full_file_path}"
+    echo "---
+layout: post
+title: <Models - Support Vector Machine>
+subtitle: <Discuss support vector machine and more. One model every week.>
+date: '$(date +%FT%T.%N%:z)'
+author: Shubham Chaudhary
+permalink: <>
+comments: true
+tags:
+  - <>
+---" > "${full_file_path}"
 
 
     echo "Run: vim ${full_file_path}"
