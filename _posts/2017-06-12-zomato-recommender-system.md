@@ -61,10 +61,10 @@ But as time evolved, the relevancy of optimizing for ratings reduced. Case in po
 [Learning to rank][ltr-wiki] aims to apply machine learning to create models for ranking data. More concretely, given a training data that consists of lists of items in some order, the ranking model's purpose is to rank/reorder the items in new, unseen lists in a way which is "similar" to rankings in the training data in some sense.
 
 ## Types of recommenders
-![Types of recommenders](http://i.imgur.com/79xz1aG.png)
+![Types of recommenders](https://i.imgur.com/79xz1aG.png)
 
 ### Problems with different recommenders
-![Problems with recommenders](http://i.imgur.com/AmGSvfs.png)
+![Problems with recommenders](https://i.imgur.com/AmGSvfs.png)
 
 
 ## Papers
@@ -80,5 +80,5 @@ Google Scholars has [a comprehensive list][scholars-recommender-systems] of auth
 
 [scholars-recommender-systems]: https://scholar.google.co.in/citations?view_op=search_authors&hl=en&mauthors=label:recommender_systems
 [past-present-future-of-recommender]: https://www.slideshare.net/xamat/past-present-and-future-of-recommender-systems-an-industry-perspective
-[netflix-prize]: http://www.netflixprize.com/assets/GrandPrize2009_BPC_BellKor.pdf
+[netflix-prize]: https://www.netflixprize.com/assets/GrandPrize2009_BPC_BellKor.pdf
 [ltr-wiki]: https://en.wikipedia.org/wiki/Learning_to_rank

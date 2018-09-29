@@ -109,5 +109,5 @@ the links below to know more.
 1. [Checkout the documentation for support annotations][support-annotations]
 
 [pref-matters]: https://www.youtube.com/watch?v=Hzs6OBcvNQE
-[support-annotations]: http://tools.android.com/tech-docs/support-annotations
+[support-annotations]: https://tools.android.com/tech-docs/support-annotations
 [typedef-error]: {{site.baseurl}}/img/android-typedef.png

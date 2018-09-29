@@ -26,7 +26,7 @@ Recently, we got down to identifying areas of improvement in the network operati
 
 1. Opening a connection using an HTTP client. Our apps used Apache as the HTTP client.
 1. Fetching API responses on background threads. Our apps used the standard AsyncTask class for fetching API responses.
-1. Parsing responses into Java objects. Our apps used the <a style="text-align: center; text-decoration: underline; font-style: italic;" href="http://vtd-xml.sourceforge.net/">VTD-XML parser</a> for parsing XML data in API.
+1. Parsing responses into Java objects. Our apps used the <a style="text-align: center; text-decoration: underline; font-style: italic;" href="https://vtd-xml.sourceforge.net/">VTD-XML parser</a> for parsing XML data in API.
 
 As soon as we picked up this project, we knew that there was a lot of work that had been pushed too long. We considered each of these components one by one, looked at the specifics, analysed all the alternatives available and dug deep to understand what we could optimise and improve. Let’s look at each one of these three aspects in detail.
 
@@ -83,10 +83,10 @@ We’ve already implemented this in our [Zomato for Business app](https://www.zo
 We’d like to extend our thanks to all the open source projects mentioned in the post, and to the power of collaborative open source programming.
 
 [showdown-img]: {{site.baseurl}}/img/zomato-android-network-showdown.png
-[vtd-xml]: http://vtd-xml.sourceforge.net/
-[okhttp]: http://square.github.io/okhttp/
-[apache-deprecation]: http://developer.android.com/about/versions/marshmallow/android-6.0-changes.html#behavior-apache-http-client
-[zdroid-apps]: http://www.zomato.com/mobile
+[vtd-xml]: https://vtd-xml.sourceforge.net/
+[okhttp]: https://square.github.io/okhttp/
+[apache-deprecation]: https://developer.android.com/about/versions/marshmallow/android-6.0-changes.html#behavior-apache-http-client
+[zdroid-apps]: https://www.zomato.com/mobile
 [zomato-on-http2-announcement]: https://twitter.com/ylogx/status/695871769928867842
 [http2]: https://http2.github.io/
 [jackson]: https://github.com/FasterXML/jackson-core
