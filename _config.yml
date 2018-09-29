@@ -4,7 +4,7 @@ header-img: img/home-bg.jpg
 email: me@shubhamchaudhary.in
 description: "Develop Freedom - Blog by Shubham Chaudhary"
 baseurl: "/blog" # the subpath of your site, e.g. /blog/
-url: "http://shubham.chaudhary.xyz" # the base hostname & protocol for your site
+url: "https://shubham.chaudhary.xyz" # the base hostname & protocol for your site
 twitter_username: ylogx
 github_username: ylogx
 facebook_username: ylogx
