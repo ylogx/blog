@@ -12,9 +12,10 @@ tags:
   - BytesIO
   - buffers
   - in-memory buffers
+  - zomato
 ---
 
-At zomato we work with a lot of images, close to hundred thousand new images every day.
+At [zomato][zblog] we work with a lot of images, close to hundred thousand new images every day.
 There are a lot of usecases where we need to download images,
 process them, and then pass them to our models.
 The usual workflow is to fetch the image from a url, save it in a file and
@@ -121,3 +122,4 @@ Please let me know if you are able to reproduce similar results.
 
 [io.BytesIO]: https://docs.python.org/3/library/io.html#io.BytesIO
 [perf-code-gist]: https://gist.github.com/7b5d7f0957a4aa3c84c010f3d7f27643
+[zblog]: https://www.zomato.com/blog/
