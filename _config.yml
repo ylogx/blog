@@ -9,6 +9,8 @@ author_name: Shubham Chaudhary
 twitter_username: ylogx
 github_username: ylogx
 facebook_username: ylogx
+feedburner_email_subscribe_link: "https://feedburner.google.com/fb/a/mailverify?uri=chaudhary_xyz&amp;loc=en_US"
+feedburner_rss_link: "http://feeds.feedburner.com/chaudhary_xyz"
 
 # Build settings
 markdown: kramdown
