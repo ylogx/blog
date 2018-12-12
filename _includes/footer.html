@@ -16,8 +16,9 @@
                 <ul class="list-inline text-center">
                     <li>
                         <!--<a href="{{ "/feed.xml" | prepend: site.baseurl }}">-->
-                        <a href="{{ site.feedburner_rss_link }}" rel="alternate" type="application/rss+xml">
-                            <span class="fa-stack" style="vertical-align: top;" title="Follow the rss feed">
+                        <a href="{{ site.feedburner_rss_link }}" rel="alternate" type="application/rss+xml"
+                           title="Follow the rss feed">
+                            <span class="fa-stack" style="vertical-align: top;">
                               <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
                                 <!--<i class="fas fa-blog fa-stack-1x fa-inverse"></i>-->
@@ -25,8 +26,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ site.feedburner_email_subscribe_link }}">
-                            <span class="fa-stack" style="vertical-align: top;" title="Subscribe to the blog via email">
+                        <a href="{{ site.feedburner_email_subscribe_link }}" title="Subscribe to the blog via email">
+                            <span class="fa-stack" style="vertical-align: top;">
                               <i class="fas fa-circle fa-stack-2x"></i>
                               <!--<i class="fab fa-mailchimp fa-stack-1x fa-inverse"></i>-->
                               <!--<i class="fas fa-at fa-stack-1x fa-inverse"></i>-->
@@ -40,9 +41,9 @@
                     </li>
                     {% if site.twitter_username %}
                     <li>
-                        <a href="https://twitter.com/{{ site.twitter_username }}">
-                            <span class="fa-stack" style="vertical-align: top;"
-                                  title="Available as {{ site.twitter_username }} on Twitter">
+                        <a href="https://twitter.com/{{ site.twitter_username }}"
+                           title="Available as {{ site.twitter_username }} on Twitter">
+                            <span class="fa-stack" style="vertical-align: top;">
                               <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
                             </span>
@@ -51,9 +52,9 @@
                     {% endif %}
                     {% if site.facebook_username %}
                     <li>
-                        <a href="https://www.facebook.com/{{ site.facebook_username }}">
-                            <span class="fa-stack" style="vertical-align: top;"
-                                  title="Available as {{ site.facebook_username }} on Facebook">
+                        <a href="https://www.facebook.com/{{ site.facebook_username }}"
+                           title="Available as {{ site.facebook_username }} on Facebook">
+                            <span class="fa-stack" style="vertical-align: top;">
                               <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
                             </span>
@@ -62,9 +63,9 @@
                     {% endif %}
                     {% if site.github_username %}
                     <li>
-                        <a href="https://github.com/{{ site.github_username }}">
-                            <span class="fa-stack" style="vertical-align: top;"
-                                  title="Available as {{ site.github_username }} on Github">
+                        <a href="https://github.com/{{ site.github_username }}"
+                           title="Available as {{ site.github_username }} on Github">
+                            <span class="fa-stack" style="vertical-align: top;">
                               <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                             </span>
