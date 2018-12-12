@@ -32,12 +32,24 @@ layout: default
                 <ul class="pager">
                     {% if page.previous.url %}
                     <li class="previous">
-                        <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">&larr; Previous Post</a>
+                        <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">
+                            <!--<i class="fas fa-angle-left"></i> Previous Post-->
+                            <!--<i class="fas fa-chevron-circle-left"></i> Previous Post-->
+                            <i class="fas fa-arrow-circle-left"></i> Previous Post
+                            <!--<i class="fas fa-caret-left"></i> Previous Post-->
+                            <!--<i class="fas fa-arrow-alt-circle-left"></i> Previous Post-->
+                        </a>
                     </li>
                     {% endif %}
                     {% if page.next.url %}
                     <li class="next">
-                        <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">Next Post &rarr;</a>
+                        <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">
+                            <!--Next Post <i class="fas fa-angle-right"></i>-->
+                            <!--Next Post <i class="fas fa-chevron-circle-right"></i>-->
+                            Next Post <i class="fas fa-arrow-circle-right"></i>
+                            <!--Next Post <i class="fas fa-caret-right"></i>-->
+                            <!--Next Post <i class="fas fa-arrow-alt-circle-right"></i>-->
+                        </a>
                     </li>
                     {% endif %}
                 </ul>
