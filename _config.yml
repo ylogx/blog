@@ -17,5 +17,7 @@ markdown: kramdown
 highlighter: rouge
 permalink: pretty
 paginate: 5
-exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
-plugins: [jekyll-paginate]  # sudo gem install --verbose <name>
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md", ".idea"]
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap

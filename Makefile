@@ -9,4 +9,4 @@ install:
 	npm install
 
 install_jekyll:
-	sudo gem install jekyll jekyll-paginate --verbose
+	sudo gem install jekyll jekyll-paginate jekyll-sitemap --verbose
