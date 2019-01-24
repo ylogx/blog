@@ -17,7 +17,15 @@ markdown: kramdown
 highlighter: rouge
 permalink: pretty
 paginate: 5
+feed:
+  categories:
+  - kde
+  - ml
+  - akademy
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md", ".idea"]
+#plugins: [jekyll-paginate, jekyll-feed]  # sudo gem install --verbose <name>
 plugins:
   - jekyll-paginate
+  - jekyll-feed
+  #- amp-jekyll
   #- jekyll-sitemap
