@@ -3,9 +3,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ site.description }}">
+    <meta name="description" content="{% if page.subtitle %}{{ page.subtitle }} - {{ site.post_title_suffix }}{% else %}{{ site.description }}{% endif %}">
 
-    <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <title>{% if page.title %}{{ page.title }} - {{ site.post_title_suffix }}{% else %}{{ site.post_title_suffix }}{% endif %}</title>
 
     {% if page.canonical_url != nil %}
     <link rel="canonical" href="{{ page.canonical_url }}"/>

@@ -2,6 +2,7 @@
 title: Develop Freedom
 header-img: img/home-bg.jpg
 email: me@shubhamchaudhary.in
+post_title_suffix: "Develop Freedom: Blog by Shubham Chaudhary"
 description: "Develop Freedom - Blog by Shubham Chaudhary"
 baseurl: "/blog" # the subpath of your site, e.g. /blog/
 url: "https://shubham.chaudhary.xyz" # the base hostname & protocol for your site
@@ -17,7 +18,13 @@ markdown: kramdown
 highlighter: rouge
 permalink: pretty
 paginate: 5
-exclude: ["less","node_modules","Gruntfile.js","package.json","README.md", ".idea"]
+exclude:
+  - "less"
+  - "node_modules"
+  - "Gruntfile.js"
+  - "package.json"
+  - "README.md"
+  - ".idea"
 plugins:
   - jekyll-paginate
   #- jekyll-sitemap
