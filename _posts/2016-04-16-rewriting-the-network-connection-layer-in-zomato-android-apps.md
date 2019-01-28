@@ -6,6 +6,7 @@ date: '2016-04-16T00:00:00.000+05:30'
 author: Shubham Chaudhary @ Zomato
 permalink: zomato/android/network
 header-img: img/zomato-android-network-showdown-darker-for-bg.png
+canonical_url: https://www.zomato.com/blog/rewriting-the-network-connection-layer-in-our-android-apps
 comments: true
 tags:
 - zomato
@@ -16,7 +17,7 @@ tags:
 ---
 
 
-<p style="text-align: center; font-style: italic;">This is one of the very first project picked by me during my first few months at Zomato. This is a <a href="https://engineering.zomato.com/rewriting-the-network-connection-layer-in-our-android-apps-11771c71012">cross post</a> from Zomato Engineering Blog</p>
+<p style="text-align: center; font-style: italic;">This is one of the very first project picked by me during my first few months at Zomato. This is a <a href="https://www.zomato.com/blog/rewriting-the-network-connection-layer-in-our-android-apps">cross post</a> from Zomato Engineering Blog</p>
 
 
 Given the large number of features we have in our apps, performance is of prime importance, and it’s something we look at very closely. We’re constantly tinkering with various components of the app to improve speed, reduce the memory footprint, and optimise battery usage. We’ve often found that networking proves to be a big bottleneck when it comes to the speed of our app. Efficient networking can not only speed up the app, but also save considerable network bandwidth.
