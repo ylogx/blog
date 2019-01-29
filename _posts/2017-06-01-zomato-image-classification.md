@@ -24,7 +24,6 @@ we have two main sources for images uploaded on the platform:
 1. Images uploaded by users when they visit a restaurant and write reviews about them on Zomato
 2. Images uploaded by the data collection when we create new restaurant page
 
-<!-- TODO: Use case for an image classifier -->
 At Zomato, we had several use-cases for image classification:
 
 1. We can help users find out ambiance images quickly if we show images in collections like food, ambiance.
@@ -76,6 +75,8 @@ This confuses the ambiance and human classifiers and leads to incorrect classifi
 
 Youtube dataset didn't have a lot of face shots in it. To help the model learn face shots, we used [lfw dataset][lfw-dataset].
 
+![lfw images preview][lfw-images-preview]
+
 ### Dataset Preprocessing
 Now after all this we have a lot of data in four folders - food, ambiance, menu, human.
 Next problem is that when you're training model, you need this data as a dataframe to be passed to keras.
@@ -84,7 +85,7 @@ We used HDF5 to build a dataframe that was iterable and stayed out of memory.
 
 ## Training the Model
 
-We did this first in 2015, back then alexnet was the thing.
+We trained this model for the first time in 2016, back then alexnet was the thing.
 We started with alexnet as our model.
 We decided to use keras as our framework because we liked its capability to switch the backend engine (theano, tensorflow) in future.
 Back then it wasn't as simple as now to install tensorflow `pip install tensorflow`,
@@ -92,18 +93,32 @@ so we used theano as our engine because it gave reliable, consistent results and
 
 ## Deploying this in production
 
+We started using this in the backend for moderation and various other usecases in 2016.
+We finally made this live on the product side [on 23 Mar 2017][project-deep-announcement] for Food Ambiance classification.
+We first made this live on the web and apps soon added this in upcoming release.
+Image below show results before and after using image classification.
 
-We finally made this live on [F/A classification][project-deep-announcement]
+![Food Ambiance - results before and after classification][food-ambiance-web]
 
-![Food Ambiance][food-ambiance-web] Image show results before and after classification
+This example clearly shows how image classification can make it easier to find food shots
+in this case when the starting images of the restaurant page are predominantly filled with ambiance shots.
 
+
+## Evolution
+
+We learnt a lot from making this first model live.
+We as a team have grown from 3 people team to a 15 member team rapidly expanding core engineering machine learning now.
+Apart from evolving this model, we have evolved our data gathering and model training
+process significantly to reduce the TAT from idea to model generation and api creation.
+We will be making future blog posts about this soon. Please stay tuned, watch out for that ML tag and subscribe to the blog.
 
 <!--https://docs.google.com/presentation/d/1MaFPaTSEMG90qzjFIQbfDdCKT-p0xYqS7C6Pz-W6sZE/edit#slide=id.g198284fc4a_0_65-->
 
-[food-ambiance-web]: {{site.baseurl}}/img/food-ambiance.png
+[food-ambiance-web]: {{site.baseurl}}/img/clazzify/food-ambiance.png
 [project-deep-announcement]: https://twitter.com/ylogx/status/844817269297311744
-[confusing-youtube-human-image]: {{site.baseurl}}/img/food-ambiance.png?FIXME
-[youtube-dataset]: {{site.baseurl}}/img/food-ambiance.png?FIXME
-[lfw-dataset]: {{site.baseurl}}/img/food-ambiance.png?FIXME
+[confusing-youtube-human-image]: {{site.baseurl}}/img/clazzify/human_in_action_1.jpg
+[lfw-images-preview]: {{site.baseurl}}/img/clazzify/lfw_six_face_panels.jpg
+[youtube-dataset]: http://www.cs.ucf.edu/~liujg/YouTube_Action_dataset.html
+[lfw-dataset]: http://vis-www.cs.umass.edu/lfw/
 [zomato-homepage]: https://www.zomato.com
 <!-- # FIXME: Fix this -->
