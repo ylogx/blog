@@ -92,8 +92,8 @@ related = model.similar_items(itemid)
 {% endhighlight %}
 
 
-[overview-post]: {{site_url}}/zomato/recommender/overview
-[implicit-data]: {{site_url}}/zomato/recommender/overview#implicit-feedback
+[overview-post]: {{site.baseurl}}/zomato/recommender/overview
+[implicit-data]: {{site.baseurl}}/zomato/recommender/overview#implicit-feedback
 [matrix-decomposition]:  {{site.baseurl}}/img/recommenders/matrix-decomposition.png
 [low-rank-matrix-factorization]: {{site.baseurl}}/img/recommenders/low-rank-matrix-factorization.png
 [mahout-als]: https://mahout.apache.org/users/recommender/intro-als-hadoop.html
