@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Deep Learning for image classification
-subtitle: Training an image classifier and deploying it to production
+subtitle: Training our first deep learning based image classifier and deploying it to production
 date: '2017-05-01T00:00:00.000+05:30'
 author: Shubham Chaudhary
 permalink: zomato/ml/classification
@@ -15,59 +15,95 @@ tags:
   - alexnet
 ---
 
-<!-- TODO: Use case for an image classifier -->
+## Why we needed image classifier
+
 Image classification is the process of categorizing images into bins.
+Working at [Zomato][zomato-homepage] - a restaurant search and discovery platform,
+we have two main sources for images uploaded on the platform:
 
-Working at Zomato - a restaurant search and discovery platform, we have two main sources for images uploaded on the platform:
+1. Images uploaded by users when they visit a restaurant and write reviews about them on Zomato
+2. Images uploaded by the data collection when we create new restaurant page
 
-1.  Images uploaded by the moderators when creating new restaurant listing
-2.  Images uploaded by users when they visit a restaurant
-
-
+<!-- TODO: Use case for an image classifier -->
 At Zomato, we had several use-cases for image classification:
-1.
-2.
-3.
 
-Earlier we had two source from where we could gather food, ambience shot data.
-When moderators were uploading images for any restaurant, they had an option to mark an image as food or ambience shot.
-But this data was very limited. Moderators only uploaded very few images, ~10-20 per restaurant. Now if you divide that into two categories, show 5-10 images is not much useful from product standpoint.
+1. We can help users find out ambiance images quickly if we show images in collections like food, ambiance.
+Earlier we had two source from where we could gather food, ambiance shot data.
+When moderators were uploading images for any restaurant, they had an option to mark an image as food or ambiance shot.
+But this data was very limited. Moderators only uploaded very few images, ~10-20 per restaurant. Now if you divide
+that into two categories, show 5-10 images is not much useful from product standpoint. We wanted to split all images
+uploaded on any restaurant.
+Future collections could be indoor shots, outdoor shots, drinks, dishes.
+2. We want to remove selfies from showing up on restaurant page,
+so detecting humans & selfies helps the moderation team take decisions quickly.
+Human moderators can only do so much. We badly needed to automate this to improve our overall photo moderation TAT.
+3. Along similar lines, if something looks like a menu,
+we'd like our content team to have a look at it and not show this to users.
+We want to ensure that only the highest quality menu images are shown to users
+(the ones manually verified by our data collection team)
+4. The ratio of images uploaded on zomato is heavily biased towards food as compared to ambiance.
+This helps quickly surface the ambiance images to users.
 
-Humans can only do so much. We badly needed to automate this and have the capability to moderate all the user generated images.
+## How will we build this
 
-Apart from the food vs ambience image classification, we had another use-case where we wanted to remove any image that contained humans in it.
-Automated image moderation - we don't show images with humans in them.
+Image Classification is pretty straight forward from tech standpoint when you're doing it in jupyter notebook.
+It was more challenging for us because this was our first deep learning based project going live.
+Moreover to exacerbate our problems, the scale for this was enormous.
+We had to build a system that could moderate close to half a million images on a daily basis.
 
+### Dataset Gathering:
+Before we could prove to our PMs on whether this "new deep learning" based method would work or not,
+we needed to collect labelled data - a whole lot of it.
+The labels we decided to get started with were - food, ambiance, menu, human.
 
- Helps:
+#### Food & Ambiance
+At zomato, we had manually tagged images, marked as food and ambiance shots.
+We downloaded 50,000 each - food and ambiance images for classification problem.
 
+#### Menu
+Generating dataset for menus was the easiest.
+At zomato we have tons of menus, manually tagged and clustered into categories (that's kinda how the company started).
+We downloaded 50,000 menu images from s3 distributed across randomly selected restaurants on zomato.
 
-# Dataset Creation:
-
-### Food & Ambience
-At zomato, we had manually tagged images, marked as food and ambience shots. We downloaded 50,000 each - food and ambience images for classification problem.
-
-### Menu
-Generating dataset for menus was the easiest. At zomato we have tons of menus, manually tagged and clustered into categories (that's kinda how the company started). We downloaded 50,000 menu images from s3 distributed across randomly selected restaurants on zomato.
-
-### Humans
-Finding the right dataset for humans was tricky. There is a public dataset - [Youtube dataset][youtube-dataset]. The problem with this dataset is that, it contains shots like the following image. This contains human, but it can also has characteristics of an ambience shot. This confuses the ambience and human classifiers and leads to incorrect classification.
-
-Youtube dataset didn't have a lot of face shots in it. To help the model learn face shots, we used [lfw dataset][lfw-dataset].
+#### Humans
+Finding the right dataset for humans was tricky.
+There is a public dataset - [Youtube dataset][youtube-dataset].
+The problem with this dataset is that, it contains shots like the following image.
+This contains human, but it can also has characteristics of an ambiance shot.
+This confuses the ambiance and human classifiers and leads to incorrect classification.
 
 ![confusing image][confusing-youtube-human-image]
 
+Youtube dataset didn't have a lot of face shots in it. To help the model learn face shots, we used [lfw dataset][lfw-dataset].
 
-[F/A classification][project-deep-announcement]
+### Dataset Preprocessing
+Now after all this we have a lot of data in four folders - food, ambiance, menu, human.
+Next problem is that when you're training model, you need this data as a dataframe to be passed to keras.
+We used HDF5 to build a dataframe that was iterable and stayed out of memory.
 
-![Food Ambiance][food-ambience-web] Image show results before and after classification
+
+## Training the Model
+
+We did this first in 2015, back then alexnet was the thing.
+We started with alexnet as our model.
+We decided to use keras as our framework because we liked its capability to switch the backend engine (theano, tensorflow) in future.
+Back then it wasn't as simple as now to install tensorflow `pip install tensorflow`,
+so we used theano as our engine because it gave reliable, consistent results and was easier to setup.
+
+## Deploying this in production
+
+
+We finally made this live on [F/A classification][project-deep-announcement]
+
+![Food Ambiance][food-ambiance-web] Image show results before and after classification
 
 
 <!--https://docs.google.com/presentation/d/1MaFPaTSEMG90qzjFIQbfDdCKT-p0xYqS7C6Pz-W6sZE/edit#slide=id.g198284fc4a_0_65-->
 
-[food-ambience-web]: {{site.baseurl}}/img/food-ambience.png
+[food-ambiance-web]: {{site.baseurl}}/img/food-ambiance.png
 [project-deep-announcement]: https://twitter.com/ylogx/status/844817269297311744
-[confusing-youtube-human-image]: {{site.baseurl}}/img/food-ambience.png?FIXME
-[youtube-dataset]: {{site.baseurl}}/img/food-ambience.png?FIXME
-[lfw-dataset]: {{site.baseurl}}/img/food-ambience.png?FIXME
-# FIXME: Fix this
+[confusing-youtube-human-image]: {{site.baseurl}}/img/food-ambiance.png?FIXME
+[youtube-dataset]: {{site.baseurl}}/img/food-ambiance.png?FIXME
+[lfw-dataset]: {{site.baseurl}}/img/food-ambiance.png?FIXME
+[zomato-homepage]: https://www.zomato.com
+<!-- # FIXME: Fix this -->
