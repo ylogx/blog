@@ -49,6 +49,13 @@ Image Classification is pretty straight forward from tech standpoint when you're
 It was more challenging for us because this was our first deep learning based project going live.
 Moreover to exacerbate our problems, the scale for this was enormous.
 We had to build a system that could moderate close to half a million images on a daily basis.
+We trained this model for the first time in 2016.
+This blog post will be a combination of things that we did when we built this model for the first time and
+also pointer to what we would do when retraining this now.
+
+When building the model, we used [luigi][luigi-home] to tie our data gathering, data preprocessing, model training and validation together.
+Luigi helped us build all these as a DAG based pipeline, since clearly each step depended on other steps for the final step to be completed.
+Luigi also provided a nice visual interface to monitor progress of our data & model pipeline.
 
 ### Dataset Gathering:
 Before we could prove to our PMs on whether this "new deep learning" based method would work or not,
@@ -80,16 +87,23 @@ Youtube dataset didn't have a lot of face shots in it. To help the model learn f
 ### Dataset Preprocessing
 Now after all this we have a lot of data in four folders - food, ambiance, menu, human.
 Next problem is that when you're training model, you need this data as a dataframe to be passed to keras.
-We used HDF5 to build a dataframe that was iterable and stayed out of memory.
+We used [Hierarchical Data Format][hdf] ([HDF5][h5py-home]) to build a dataframe that was iterable and stayed out of memory.
+Using the [pythonic interface][h5py-docs] of [h5py][h5py-git] you can slice and dice terabytes of data,
+as if they were numpy arrays in memory.
+When retraining we would also look into using recordio format.
 
 
 ## Training the Model
 
-We trained this model for the first time in 2016, back then alexnet was the thing.
-We started with alexnet as our model.
-We decided to use keras as our framework because we liked its capability to switch the backend engine (theano, tensorflow) in future.
+In 2016, alexnet was the thing.
+We started with [alexnet][alexnet-paper] as our [model][alexnet-implementation].
+We also tried [inception v3][inception-v3-paper] and [google lenet][goog-lenet-paper].
+Today we'd look at models like resnet and mobilenet.
+We decided to use [keras][keras] as our framework because we liked its capability to switch the backend engine (theano, tensorflow) in future.
 Back then it wasn't as simple as now to install tensorflow `pip install tensorflow`,
-so we used theano as our engine because it gave reliable, consistent results and was easier to setup.
+so we used [theano][theano] as our engine because it gave reliable, consistent results and was easier to setup with keras.
+Keras would still be the choice for writing our models but doing this now we would use something like AWS
+Sagemaker for training our models.
 
 ## Deploying this in production
 
@@ -112,6 +126,8 @@ Apart from evolving this model, we have evolved our data gathering and model tra
 process significantly to reduce the TAT from idea to model generation and api creation.
 We will be making future blog posts about this soon. Please stay tuned, watch out for that ML tag and subscribe to the blog.
 
+<!-- Tensorflow Lite -->
+
 <!--https://docs.google.com/presentation/d/1MaFPaTSEMG90qzjFIQbfDdCKT-p0xYqS7C6Pz-W6sZE/edit#slide=id.g198284fc4a_0_65-->
 
 [food-ambiance-web]: {{site.baseurl}}/img/clazzify/food-ambiance.png
@@ -121,4 +137,14 @@ We will be making future blog posts about this soon. Please stay tuned, watch ou
 [youtube-dataset]: http://www.cs.ucf.edu/~liujg/YouTube_Action_dataset.html
 [lfw-dataset]: http://vis-www.cs.umass.edu/lfw/
 [zomato-homepage]: https://www.zomato.com
-<!-- # FIXME: Fix this -->
+[h5py-home]: https://www.h5py.org/
+[h5py-git]: https://github.com/h5py/h5py
+[h5py-docs]: http://docs.h5py.org/en/stable/quick.html
+[hdf]: https://en.wikipedia.org/wiki/Hierarchical_Data_Format
+[luigi-home]: https://github.com/spotify/luigi
+[alexnet-paper]: https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf
+[inception-v3-paper]: https://arxiv.org/pdf/1512.00567.pdf
+[goog-lenet-paper]: https://www.cs.unc.edu/~wliu/papers/GoogLeNet.pdf
+[alexnet-implementation]: https://github.com/Zomato/convnets-keras
+[keras]: https://keras.io/
+[theano]: https://github.com/Theano/Theano
