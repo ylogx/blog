@@ -148,10 +148,12 @@ in this case when the starting images of the restaurant page are predominantly f
 ## Evolution
 
 We learnt a lot from making this first model live.
-We as a team have grown from 3 people team to a 15 member team rapidly expanding core engineering machine learning now.
 Apart from evolving this model, we have evolved our data gathering and model training
 process significantly to reduce the TAT from idea to model generation and api creation.
 We will be making future blog posts about this soon. Please stay tuned, watch out for that ML tag and subscribe to the blog.
+
+We are rapidly expanding our machine learning team and have grown in number by 5x in just last year.
+We are hiring, please checkout our [careers page][zomato-careers-page].
 
 <!-- Tensorflow Lite -->
 
@@ -178,3 +180,4 @@ We will be making future blog posts about this soon. Please stay tuned, watch ou
 [theano]: https://github.com/Theano/Theano
 [aws-gpu-instances]: https://aws.amazon.com/ec2/instance-types/#Accelerated_Computing
 [clazzify-accuracy-loss-graph]: {{site.baseurl}}/img/clazzify/accuracy-loss-graph.png
+[zomato-careers-page]: https://www.zomato.com/careers
