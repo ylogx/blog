@@ -91,6 +91,8 @@ We used [Hierarchical Data Format][hdf] ([HDF5][h5py-home]) to build a dataframe
 Using the [pythonic interface][h5py-docs] of [h5py][h5py-git] you can slice and dice terabytes of data,
 as if they were numpy arrays in memory.
 When retraining we would also look into using recordio format.
+We resized each image to 227x227 dimension, performed some cleaning steps.
+We created multiple variations of each image by using rotation, scaling, zooming & cropping.
 
 
 ## Training the Model
@@ -105,7 +107,32 @@ so we used [theano][theano] as our engine because it gave reliable, consistent r
 Keras would still be the choice for writing our models but doing this now we would use something like AWS
 Sagemaker for training our models.
 
+![Alexnet layers description image][alexnet-layers-image]
+
+We trained the initial few iterations of our models on our in-house GPU servers. Then we shifted to [AWS GPU p2.xlarge
+ instances][aws-gpu-instances].
+We trained our models from scratch instead of doing transfer learning on an existing imagenet model
+to better fit our restaurant industry domain photos.
+We had 50000 images for each of our 4 classes - food, ambiance, menu, human.
+As shown in the graph below, we were able to achieve ~92% validation accuracy.
+
+![Accuracy-Loss Graph][clazzify-accuracy-loss-graph]
+
+
 ## Deploying this in production
+
+For serving the model, we created an internal api based on flask.
+We added authentication layers on top of it and exposed it to our internal vpc network.
+Today you'd used something like onnx or tensorflow serving.
+Back in 2016, there wasn't much work done on the inference of ML models, so we went ahead with this internal flask API.
+We dockerized this API in a docker container based on miniconda3.
+After every code merge, jenkins would run the unit tests and create the final docker image.
+The docker image will contain both the code and the latest model.
+Then we'd run automated tests on this image to check if it is doing good inference on a set of images.
+Once this test is passed, we deploy this image on AWS elastic beanstalk, where this API is auto scaled based on the input load.
+
+Once this api is up, from our web side whenever a image is uploaded on Zomato, we push it in a queue.
+There are multiple workers running that pick the image from the queue, ask this api for inference scores and save these scores in our database.
 
 We started using this in the backend for moderation and various other usecases in 2016.
 We finally made this live on the product side [on 23 Mar 2017][project-deep-announcement] for Food Ambiance classification.
@@ -146,5 +173,8 @@ We will be making future blog posts about this soon. Please stay tuned, watch ou
 [inception-v3-paper]: https://arxiv.org/pdf/1512.00567.pdf
 [goog-lenet-paper]: https://www.cs.unc.edu/~wliu/papers/GoogLeNet.pdf
 [alexnet-implementation]: https://github.com/Zomato/convnets-keras
+[alexnet-layers-image]:  {{site.baseurl}}/img/clazzify/alexnet-layers.png
 [keras]: https://keras.io/
 [theano]: https://github.com/Theano/Theano
+[aws-gpu-instances]: https://aws.amazon.com/ec2/instance-types/#Accelerated_Computing
+[clazzify-accuracy-loss-graph]: {{site.baseurl}}/img/clazzify/accuracy-loss-graph.png
