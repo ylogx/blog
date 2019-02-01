@@ -4,6 +4,7 @@ title: Deep Learning for image classification
 subtitle: Training our first deep learning based image classifier and deploying it to production
 date: '2017-05-01T00:00:00.000+05:30'
 author: Shubham Chaudhary
+header-img: img/clazzify/fahm-collage-darkened.png
 permalink: zomato/ml/classification
 comments: true
 tags:
@@ -61,6 +62,8 @@ Luigi also provided a nice visual interface to monitor progress of our data & mo
 Before we could prove to our PMs on whether this "new deep learning" based method would work or not,
 we needed to collect labelled data - a whole lot of it.
 The labels we decided to get started with were - food, ambiance, menu, human.
+
+![food, ambiance, menu, human image collage][fahm-collage]
 
 #### Food & Ambiance
 At zomato, we had manually tagged images, marked as food and ambiance shots.
@@ -150,7 +153,8 @@ in this case when the starting images of the restaurant page are predominantly f
 We learnt a lot from making this first model live.
 Apart from evolving this model, we have evolved our data gathering and model training
 process significantly to reduce the TAT from idea to model generation and api creation.
-We will be making future blog posts about this soon. Please stay tuned, watch out for that ML tag and subscribe to the blog.
+We will be making future blog posts about our ML training process and other machine learning models in production soon.
+Please stay tuned, watch out for that ML tag and subscribe to the blog.
 
 We are rapidly expanding our machine learning team and have grown in number by 5x in just last year.
 We are hiring, please checkout our [careers page][zomato-careers-page].
@@ -181,3 +185,4 @@ We are hiring, please checkout our [careers page][zomato-careers-page].
 [aws-gpu-instances]: https://aws.amazon.com/ec2/instance-types/#Accelerated_Computing
 [clazzify-accuracy-loss-graph]: {{site.baseurl}}/img/clazzify/accuracy-loss-graph.png
 [zomato-careers-page]: https://www.zomato.com/careers
+[fahm-collage]: {{site.baseurl}}/img/clazzify/fahm-collage.png
