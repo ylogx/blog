@@ -140,9 +140,9 @@ Once this test is passed, we deploy this image on AWS elastic beanstalk, where t
 Once this api is up, from our web side whenever a image is uploaded on Zomato, we push it in a queue.
 There are multiple workers running that pick the image from the queue, ask this api for inference scores and save these scores in our database.
 
-We started using this in the backend for moderation and various other usecases in 2016.
-We finally made this [live on the product side][project-deep-announcement] for Food Ambiance classification.
-We first made this live on the web and apps soon added this in upcoming release.
+We started using this in the backend for moderation and several other internal usecases.
+On the product side, we made this [live][project-deep-announcement] for Food Ambiance classification.
+We first made this live on the web and apps soon added this in upcoming releases.
 Image below show results before and after using image classification.
 
 ![Food Ambiance - results before and after classification][food-ambiance-web-gimp]
