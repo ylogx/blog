@@ -4,7 +4,7 @@ title: Deep Learning for image classification
 subtitle: Training our first deep learning based image classifier and deploying it to production
 date: '2017-05-01T00:00:00.000+05:30'
 author: Shubham Chaudhary
-header-img: img/clazzify/fahm-collage-darkened.png
+header-img: img/clazzify/fahm-gimp-dark.png
 permalink: zomato/ml/classification
 comments: true
 tags:
