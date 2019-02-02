@@ -77,38 +77,41 @@ We downloaded 50,000 menu images from s3 distributed across randomly selected re
 #### Humans
 Finding the right dataset for humans was tricky.
 There is a public dataset - [Youtube dataset][youtube-dataset].
-The problem with this dataset is that, it contains shots like the following image.
-This contains human, but it can also has characteristics of an ambiance shot.
-This confuses the ambiance and human classifiers and leads to incorrect classification.
+The problem with this dataset is that, it contains shots which are mixture of multiple scenes.
+For example some images contains human, but it can also has characteristics of an ambiance shot.
+This lead to some incorrect classification which we planned to tackle once we had a basic model ready.
+Using this slightly incorrect basic model, we can generate approximate labels
+and get them corrected by our internal moderation team much quickly than labelling images from scratch.
 
-![confusing image][confusing-youtube-human-image]
+<!-- ![confusing image][confusing-youtube-human-image] -->
 
-Youtube dataset didn't have a lot of face shots in it. To help the model learn face shots, we used [lfw dataset][lfw-dataset].
+Youtube dataset did not have a lot of face shots in it.
+To help the model learn face shots, we used [lfw dataset][lfw-dataset].
 
 ![lfw images preview][lfw-images-preview]
 
 ### Dataset Preprocessing
-Now after all this we have a lot of data in four folders - food, ambiance, menu, human.
-Next problem is that when you're training model, you need this data as a dataframe to be passed to keras.
+Now after all this exercise, we have a lot of data in four folders - food, ambiance, menu, human.
+Next problem is that when you're training model, you need to iterate over this data as a dataframe and pass it to keras.
 We used [Hierarchical Data Format][hdf] ([HDF5][h5py-home]) to build a dataframe that was iterable and stayed out of memory.
 Using the [pythonic interface][h5py-docs] of [h5py][h5py-git] you can slice and dice terabytes of data,
 as if they were numpy arrays in memory.
-When retraining we would also look into using recordio format.
 We resized each image to 227x227 dimension, performed some cleaning steps.
 We created multiple variations of each image by using rotation, scaling, zooming & cropping.
+When retraining in future we would also look into using recordio format for storing images for classification tasks.
 
 
 ## Training the Model
 
-In 2016, alexnet was the thing.
-We started with [alexnet][alexnet-paper] as our [model][alexnet-implementation].
+We started with [alexnet][alexnet-paper] as our model.
+Back in 2016, alexnet was a proven good model with multiple [open source implementations][alexnet-implementation] available.
 We also tried [inception v3][inception-v3-paper] and [google lenet][goog-lenet-paper].
-Today we'd look at models like resnet and mobilenet.
+At the time of this post, there are several more accurate and optimal models available like resnet, mobilenet etc.
 We decided to use [keras][keras] as our framework because we liked its capability to switch the backend engine (theano, tensorflow) in future.
 Back then it wasn't as simple as now to install tensorflow `pip install tensorflow`,
 so we used [theano][theano] as our engine because it gave reliable, consistent results and was easier to setup with keras.
-Keras would still be the choice for writing our models but doing this now we would use something like AWS
-Sagemaker for training our models.
+Keras would still be the choice for writing our models but doing this now we would use something like
+[AWS Sagemaker][aws-sagemaker] for training our models.
 
 ![Alexnet layers description image][alexnet-layers-image]
 
@@ -138,14 +141,14 @@ Once this api is up, from our web side whenever a image is uploaded on Zomato, w
 There are multiple workers running that pick the image from the queue, ask this api for inference scores and save these scores in our database.
 
 We started using this in the backend for moderation and various other usecases in 2016.
-We finally made this live on the product side [on 23 Mar 2017][project-deep-announcement] for Food Ambiance classification.
+We finally made this [live on the product side][project-deep-announcement] for Food Ambiance classification.
 We first made this live on the web and apps soon added this in upcoming release.
 Image below show results before and after using image classification.
 
-![Food Ambiance - results before and after classification][food-ambiance-web]
+![Food Ambiance - results before and after classification][food-ambiance-web-gimp]
 
-This example clearly shows how image classification can make it easier to find food shots
-in this case when the starting images of the restaurant page are predominantly filled with ambiance shots.
+This example clearly shows how image classification can make it easier to find ambiance shots
+in this case when the starting images of the restaurant page are predominantly filled with food shots.
 
 
 ## Evolution
@@ -164,6 +167,7 @@ We are hiring, please checkout our [careers page][zomato-careers-page].
 <!--https://docs.google.com/presentation/d/1MaFPaTSEMG90qzjFIQbfDdCKT-p0xYqS7C6Pz-W6sZE/edit#slide=id.g198284fc4a_0_65-->
 
 [food-ambiance-web]: {{site.baseurl}}/img/clazzify/food-ambiance.png
+[food-ambiance-web-gimp]: {{site.baseurl}}/img/clazzify/food-ambiance-in-product.png
 [project-deep-announcement]: https://twitter.com/ylogx/status/844817269297311744
 [confusing-youtube-human-image]: {{site.baseurl}}/img/clazzify/human_in_action_1.jpg
 [lfw-images-preview]: {{site.baseurl}}/img/clazzify/lfw_six_face_panels.jpg
@@ -183,6 +187,7 @@ We are hiring, please checkout our [careers page][zomato-careers-page].
 [keras]: https://keras.io/
 [theano]: https://github.com/Theano/Theano
 [aws-gpu-instances]: https://aws.amazon.com/ec2/instance-types/#Accelerated_Computing
+[aws-sagemaker]: https://aws.amazon.com/sagemaker/
 [clazzify-accuracy-loss-graph]: {{site.baseurl}}/img/clazzify/accuracy-loss-graph.png
 [zomato-careers-page]: https://www.zomato.com/careers
 [fahm-collage]: {{site.baseurl}}/img/clazzify/fahm-collage.png
