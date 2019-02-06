@@ -16,33 +16,38 @@ tags:
   - alexnet
 ---
 
+At [Zomato][zomato-homepage] we have more than half a billion images used in various aspects of our platform.
+On a daily basis, we deal with close to 100 thousand new images.
+When you look at the size of the data, this turns into petabytes of images in total,
+with a daily influx of approximately 500 GBs of fresh images.
+This blog will go in details about how we built a neural network based machine learning model to classify images based on
+their content into categories like food, ambiance, menu etc.
+We will also discuss about the challenges we faced when deploying such a model at Zomato's scale and
+our learning & evolution from deploying this first model.
+
 ## Why do we need to classify images?
 
 <!-- Image classification is the process of categorizing images into bins. -->
-Working at [Zomato][zomato-homepage] - a restaurant search and discovery platform,
-we have two main sources for images uploaded on the platform:
+As a restaurant search, discovery and delivery platform, the two biggest sources for images are:
 
-1. Images uploaded by users when they visit a restaurant and write reviews about them on Zomato
+1. Images uploaded by users when they visit/order a restaurant and write reviews about them on Zomato
 2. Images our team collects from the restaurants while listing them on the platform
 
-At Zomato, we had several use-cases for image classification:
+At Zomato, we have several use-cases for image classification:
 
 1. We can help users find out ambiance images quickly if we show images in collections like food, ambiance.
-Earlier we had two source from where we could gather food, ambiance shot data.
-When moderators were uploading images for any restaurant, they had an option to mark an image as food or ambiance shot.
-But this data was very limited. Moderators only uploaded very few images, ~10-20 per restaurant. Now if you divide
-that into two categories, show 5-10 images is not much useful from product standpoint. We wanted to split all images
-uploaded on any restaurant.
-Future collections could be indoor shots, outdoor shots, drinks, dishes.
-2. We want to remove selfies from showing up on restaurant page,
-so detecting humans & selfies helps the moderation team take decisions quickly.
-Human moderators can only do so much. We badly needed to automate this to improve our overall photo moderation TAT.
-3. Along similar lines, if something looks like a menu,
-we'd like our content team to have a look at it and not show this to users.
+Earlier for some restaurants, we manually tagged ~10-20 images as food & ambiance shots.
+To make this more useful for our users, we wanted to categorize all images uploaded on any restaurant across platform.
+2. The ratio of images uploaded on zomato is heavily biased towards food as compared to ambiance.
+This helps quickly surface the ambiance images to users.
+3. The quality of the content of our platform is very important to us.
+To ensure good content quality, we have a team of moderators who work tirelessly to ensure that only the best content
+is show to our users.
+Having this tagging like human/selfies etc. will help us improve the overall photo moderation TAT.
+4. Along similar lines, if something looks like a menu,
+we'd like our content team to have a look at it and not show this to our users.
 We want to ensure that only the highest quality menu images are shown to users
 (the ones manually verified by our data collection team)
-4. The ratio of images uploaded on zomato is heavily biased towards food as compared to ambiance.
-This helps quickly surface the ambiance images to users.
 
 ## How we built this?
 
@@ -62,6 +67,7 @@ Luigi also provided a nice visual interface to monitor progress of our data & mo
 Before we could prove to our PMs on whether this "new deep learning" based method would work or not,
 we needed to collect labeled data - a whole lot of it.
 The labels we decided to get started with were - food, ambiance, menu, human.
+Future collections could be indoor shots, outdoor shots, drinks, dishes.
 
 ![food, ambiance, menu, human image collage][fahm-collage]
 
