@@ -4,14 +4,15 @@ set -eux
 function create_new_post() {
     echo "---
 layout: post
-title: <Models - Support Vector Machine>
-subtitle: <Discuss support vector machine and more. One model every week.>
+title: <TODO>
+subtitle: <TODO>
 date: '$(date +%FT%T.%N%:z)'
 author: Shubham Chaudhary
-permalink: <>
+header-img: img/<TODO>
+permalink: <TODO>
 comments: true
 tags:
-  - <>
+  - <TODO>
 ---" > "${full_file_path}"
 
 
