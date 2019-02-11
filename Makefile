@@ -1,8 +1,8 @@
 serve:
-	jekyll serve --watch --port 5000
+	jekyll serve --watch --unpublished --port 5000
 
 html:
-	jekyll build --watch
+	jekyll build --watch --unpublished
 
 install:
 	echo 'Installing dependencies'
