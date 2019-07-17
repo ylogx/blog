@@ -11,6 +11,7 @@ author: Shubham Chaudhary
 header-img: img/<TODO>
 permalink: <TODO>
 comments: true
+published: false
 tags:
   - <TODO>
 ---" > "${full_file_path}"
