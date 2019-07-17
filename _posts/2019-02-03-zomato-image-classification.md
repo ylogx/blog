@@ -7,7 +7,6 @@ author: Shubham Chaudhary
 header-img: img/clazzify/fahm-gimp-dark.png
 permalink: zomato/ml/images/classification
 comments: true
-published: false
 tags:
   - zomato
   - ml
