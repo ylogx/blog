@@ -91,6 +91,8 @@ Here's the full research paper with the important parts highlighted by me.
 
 <iframe class="scribd_iframe_embed" title="End-To-End Interpretation of the French Street Name Signs Dataset - 1702.03970" src="https://www.scribd.com/embeds/460525114/content?start_page=1&view_mode=scroll&access_key=key-5KQPMHWBafa6zoyUUk3c" data-auto-height="false" data-aspect-ratio="0.7535505430242272" scrolling="no" width="100%" height="850" frameborder="0"></iframe>
 
+You can [download the pdf][pdf-download-from-scribd] for free from Scribd.
+
 [paper-ete-fsns]: https://arxiv.org/abs/1702.03970
 [img-ocr-datasets]: https://i.imgur.com/VJoGHfR.png
 [img-fsns-network]: https://i.imgur.com/gu4JEjs.png
@@ -101,3 +103,4 @@ Here's the full research paper with the important parts highlighted by me.
 [img-fsns-layers]: https://i.imgur.com/UBTlcBE.png
 [img-fsns-tiles]: https://i.imgur.com/U9gaBqG.png
 [gh-street]: https://github.com/tensorflow/models/tree/master/street
+[pdf-download-from-scribd]: https://www.scribd.com/document/460525114/End-To-End-Interpretation-of-the-French-Street-Name-Signs-Dataset-1702-03970#download
