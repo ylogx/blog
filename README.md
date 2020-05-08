@@ -1,7 +1,6 @@
 My blog
 =======
-[![Stories in Ready](https://badge.waffle.io/shubhamchaudhary/blog.png?label=ready&title=Ready)](http://waffle.io/shubhamchaudhary/blog)
-
+![Jekyll site CI](https://github.com/ylogx/blog/workflows/Jekyll%20site%20CI/badge.svg)
 
 Visit [shubham.chaudhary.xyz/blog](https://shubham.chaudhary.xyz/blog)  
 
