@@ -18,3 +18,10 @@ jobs:
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
         jekyll/builder:latest /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
+    - run: ls -ltrh _site/
+    - name: Percy Test
+      uses: percy/snapshot-action@v0.1.0
+      with:
+        build-directory: "_site/"
+      env:
+        PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
