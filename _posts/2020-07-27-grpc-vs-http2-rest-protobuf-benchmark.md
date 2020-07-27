@@ -16,6 +16,7 @@ tags:
   - engineering
 ---
 
+## Background/Overview
 ### gRPC
 [gRPC][grpc-home] is a high-performance, open source universal RPC framework.
 If you're not familiar with gRPC, this might not be the right post for you.
@@ -32,7 +33,16 @@ from [gRPC intro][grpc-intro]
 [Protobuf][protobuf-home] is a replacement for data exchange format like JSON/XML.
 The response is binary output and has a very low overhead/footprint.
 
-#### Best Parts
+### REST + JSON
+REST + JSON has been the market standard for a long time. Earlier servers also used XML in place of JSON.
+REST methods like GET/POST/PUT/DELETE are easy to understand and easy to mold into the existing usecases.
+
+### HTTP2
+HTTP2 is an amazing development in the world of HTTP.
+You can checkout this nice demo from golang.org of [HTTP/1.0][http-1-demo] vs [HTTP/2.0][http-2-demo] where an image comprised of many tiles is loaded and each tile corresponds to an HTTP request.
+There has been wide adoption from the existing cloud providers and CDNs.
+
+### Best Parts
 According to me, the following things stands out:
 * protobuf saves the hassle of writing the code to convert native objects to json on the server side and back to the objects on client side. You can use generated code to replace all json ser/deser with the generated code.
 * gRPC expands on this and allows using the generated methods like any other object and stop bothering about how the networking is working under the hood.
@@ -52,6 +62,22 @@ There are several benchmarking tools but after looking through some of these, I 
 * For REST api, we can use: [serverless-artillery][serverless-artillery]
 * For gRPC, the current best is: [ghz][ghz]
 
+#### Code Setup
+
+##### Web Servers
+I will create three web servers:
+* HTTP/REST + JSON
+* HTTP2/REST + protobuf
+* gRPC
+
+All the web server code will be same and the only different will be the output serialization method and the transporting method used.
+I'll deploy these on a standard Google Cloud compute instance (equivalent of AWS EC2 instance).
+
+##### Client Code
+Since gRPC code is accessed using a client as a method, I will create a client to access this code.
+This setup will also depend on what each benchmarking tool allows e.g. serverless artillery makes direct HTTP calls, ghz must require some other setup TODO.
+
+
 
 [grpc-home]: https://grpc.io/
 [grpc-docs]: https://grpc.io/docs/
@@ -60,3 +86,5 @@ There are several benchmarking tools but after looking through some of these, I 
 [protobuf-home]: https://developers.google.com/protocol-buffers/docs/overview
 [serverless-artillery]: https://artillery.io/docs/basic-concepts/
 [ghz]: https://ghz.sh/
+[http-1-demo]: https://http1.golang.org/gophertiles?latency=200
+[http-2-demo]: https://http2.golang.org/gophertiles?latency=200
