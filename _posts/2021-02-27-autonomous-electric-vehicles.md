@@ -112,8 +112,9 @@ Google’s Waymo has teamed up with Chrysler and it is [targeting][waymo-robotax
 Electric Vehicles need to be the go-to choice for consumers.
 EV is a hot space with a lot of hype and upcoming competition.
 There are several other areas that need innovation to make electric cars the de-facto choice.
-Tesla doesn’t have all the answers to the problems our planet faces
+Tesla doesn’t have all the answers to the problems our planet faces.
 It was a driver for EV growth and helped move the legacy auto-makers.
+A fully autonomous shared ride-hailing vehicle fleet can reduce the total cost of ownership, dramatically reduce the cost of transportation and reduce traffic/congestions.
 It is going to be one of many options, we need more innovation and for it to happen sooner!
 
 [tsla-autonomous-vs-others]: https://www.cnet.com/roadshow/news/self-driving-study-navigant-research-tesla-waymo-cruise/
