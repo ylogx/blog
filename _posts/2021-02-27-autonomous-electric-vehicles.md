@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Electric and Self-Driving Vehicle Space
-subtitle: Analyzing the Autonomous/EV Space, competition & challenges
+title: Self-Driving and Electric Vehicle Space
+subtitle: Analyzing the Autonomous/EV space, competition & challenges
 date: '2021-02-27T23:55:46.287769127-05:00'
 author: Shubham Chaudhary
-header-img: img/ev/2020-navigant-av-leaderboard.webp
+header-img: img/ev/self-driving-map.jpg
 comments: true
 published: true
 tags:
@@ -16,6 +16,7 @@ tags:
   - self-driving
   - deep-learning
   - machine-learning
+  - ml
 ---
 
 While reading Bill Gate's new book - ['How to Avoid a Climate Disaster: The Solutions We Have and the Breakthroughs We Need'][gr-bg],
