@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Self-Driving and Electric Vehicle Space
-subtitle: Analyzing the Autonomous/EV space, competition & challenges
+title: Autonomous and Electric Vehicle Space
+subtitle: Analyzing the Self-Driving/EV space, competition & challenges
 date: '2021-02-27T23:55:46.287769127-05:00'
 author: Shubham Chaudhary
 header-img: img/ev/self-driving-map.jpg
