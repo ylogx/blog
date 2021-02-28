@@ -1,23 +1,27 @@
 ---
 layout: post
-title: Electric Vehicle Space
-subtitle: Analyzing at the EV Space, competition, challenges, environment.
+title: Electric and Self-Driving Vehicle Space
+subtitle: Analyzing the Autonomous/EV Space, competition & challenges
 date: '2021-02-27T23:55:46.287769127-05:00'
 author: Shubham Chaudhary
 header-img: img/ev/2020-navigant-av-leaderboard.webp
-permalink: /thoughts/ev_space
+permalink: /autonomous-electric-vehicle
 comments: true
 published: false
 tags:
   - thoughts
   - personal
   - opinion
+  - self-driving
+  - deep-learning
+  - machine-learning
 ---
 
 While reading Bill Gate's new book - ['How to Avoid a Climate Disaster: The Solutions We Have and the Breakthroughs We Need'][gr-bg],
-I've been researching about the EV market space and its economics.
+I've been researching about the Self-Driving and Electric Vehicle market space and its economics.
 A quarter of the golbal energy-related greenhouse gas emissions are from transit vehicles.
 With global carbon emissions on the rise, electric cars are going to be a crucial part of the future.
+Self-Driving cars are going to be more efficient and spend less time/fuel in traffic.
 
 ## Market Leaders
 Tesla clearly has a first-to-market advantage, but it is not the only savior and by all metrics it is highly overvalued.
@@ -38,6 +42,8 @@ To make the EV's a defacto standard, there are several challenges that need to b
 Interestingly, EV powertrains are a lot cheaper and simpler than ICE powertrains (Internal Combustion Engine), also means less maintenance.
 Battery energy density is the biggest hurdle to successfully replacing fossil fuel powered vehicles.
 It becomes impractical to build large/high-range electric vehicles because the weight of battery packs just makes the vehicle too heavy.
+
+![battery energy density]({{site.baseurl}}/img/ev/battery-energy-density.jpg)
 
 To make a practically successful electric vehicle, you need to match the range that gas-powered vehicles provide.
 Gas-powered vehicles might be less efficient at utilizing the fuel completely but equivalent battery cells required for same range weigh a lot more.
@@ -69,12 +75,18 @@ Still, you need to get from point A to point B somehow.
 Humans make mistakes, they lose attention, get tired.
 So much so that human error play a part in 90% of crashes.
 Machines on the other hand can do this task without getting tired at all.
+
 Attempt at autonomy aren't new but recent advances in sensors, computing power and machine learning are making is more possible now.
+Lex Fridman has a very good [lectures on deep-learning][dl-for-av-by-lex] for self-driving vehicles and deep-learning.
 
 ![History of Autonomy]({{site.baseurl}}/img/ev/autonomy-history.webp)
 
 Autonomous vehicles are going to be the standard in the future.
 Self-driving cars are going to change society more than anything else in recent past.
+Attaining semi-autonomy is withing reach but fully autonomy will require significant advances.
+
+![Semi vs Full Autonomy]({{site.baseurl}}/img/ev/semi-vs-full-autonomy.webp)
+
 With all [level-5 self-driving vehicles][autonomy-levels] on road, car crashes will be a thing of the past.
 Traffic can also be significantly reduced by coordination of fully autonomous vehicles driving on road.
 
@@ -113,3 +125,4 @@ It is going to be one of many options, we need more innovation and for it to hap
 [waymo-on-road]: https://1.bp.blogspot.com/-duCbXB2_Q8Y/X35E0dr-gvI/AAAAAAAAFMA/6tlgpcsiOf0PtXWxSwqnESLQyBw2_FS9ACNcBGAsYHQ/s16000/Blog%2BPost%2BDriver%2B-%2BALT.gif
 [battery-swap]: https://hmg-h-cdn.hearstapps.com/videos/batteryswap2-1598043032.mp4
 [autonomy-levels]: https://www.theglobeandmail.com/globe-drive/self-driving-cars-are-going-to-dramatically-change-our-world-so-when-does-the-revolution-begin/article32650833/
+[dl-for-av-by-lex]: https://www.youtube.com/playlist?list=PLrAXtmErZgOeY0lkVCIVafdGFOTi45amq
