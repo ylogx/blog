@@ -20,11 +20,11 @@ tags:
   - ml
 ---
 
-While reading Bill Gate's new book - ['How to Avoid a Climate Disaster: The Solutions We Have and the Breakthroughs We Need'][gr-bg],
-I've been researching about the Self-Driving and Electric Vehicle market space and its economics.
-A quarter of the golbal energy-related greenhouse gas emissions are from transit vehicles.
+A quarter of the global energy-related greenhouse gas emissions are from transit vehicles.
 With global carbon emissions on the rise, electric cars are going to be a crucial part of the future.
 Self-Driving cars are going to be more efficient and spend less time/fuel in traffic.
+While reading Bill Gate's new book - ['How to Avoid a Climate Disaster: The Solutions We Have and the Breakthroughs We Need'][gr-bg],
+I've been researching about the Self-Driving and Electric Vehicle market space and its economics.
 
 ## Market Leaders
 Tesla clearly has a first-to-market advantage, but it is not the only savior and by all metrics it is highly overvalued.
@@ -39,7 +39,7 @@ Ford plans to be all electric cars in Europe by 2030.
 Several other successful auto-makers with a proven track record have plans to build more and more electric vehicles - Daimler/Mercedes-Benz, BMW, Jaguar.
 
 ## Challenges
-To make the EV's a defacto standard, there are several challenges that need to be solved.
+To make the EV's a de-facto standard, there are several challenges that need to be solved.
 
 ### Energy Density Problem
 Interestingly, EV powertrains are a lot cheaper and simpler than ICE powertrains (Internal Combustion Engine), also means less maintenance.
