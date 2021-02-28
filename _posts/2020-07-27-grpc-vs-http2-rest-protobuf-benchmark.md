@@ -88,3 +88,4 @@ This setup will also depend on what each benchmarking tool allows e.g. serverles
 [ghz]: https://ghz.sh/
 [http-1-demo]: https://http1.golang.org/gophertiles?latency=200
 [http-2-demo]: https://http2.golang.org/gophertiles?latency=200
+[http3]: https://www.fastly.com/blog/why-fastly-loves-quic-http3
