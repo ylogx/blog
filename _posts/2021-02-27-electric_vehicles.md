@@ -4,7 +4,7 @@ title: Electric Vehicle Space
 subtitle: Analyzing at the EV Space, competition, challenges, environment.
 date: '2021-02-27T23:55:46.287769127-05:00'
 author: Shubham Chaudhary
-header-img: img/<TODO>
+header-img: img/ev/2020-navigant-av-leaderboard.webp
 permalink: /thoughts/ev_space
 comments: true
 published: false
@@ -31,20 +31,10 @@ GM plans to sell only electric cars by 2035.
 Ford plans to be all electric cars in Europe by 2030.
 Several other successful auto-makers with a proven track record have plans to build more and more electric vehicles - Daimler/Mercedes-Benz, BMW, Jaguar.
 
-## Autonomous Vehicle
-According to Navigant's [research][tsla-autonomous-vs-others], Ford and GM are among the leaders in the race for autonomous vehicle tech.
-TSLA has hype on its side, F & GM have experience, scale, higher earnings/profits and likely the tech too.
+## Challenges
+To make the EV's a defacto standard, there are several challenges that need to be solved.
 
-![TSLA vs F vs GM autonomous driving]({{site.baseurl}}/img/ev/2020-navigant-av-leaderboard.webp)
-
-
-Google’s Waymo has teamed up with Chrysler and it is [targeting][waymo-robotaxi] ride-hailing market, already offering driverless rides in Arizona.
-Apple is teaming with Hyundai but it’s still years away from production.
-
-![Waymo taxi]({{site.baseurl}}/img/ev/waymo-on-road.gif)
-
-
-## Energy Density Problem
+### Energy Density Problem
 Interestingly, EV powertrains are a lot cheaper and simpler than ICE powertrains (Internal Combustion Engine), also means less maintenance.
 Battery energy density is the biggest hurdle to successfully replacing fossil fuel powered vehicles.
 It becomes impractical to build large/high-range electric vehicles because the weight of battery packs just makes the vehicle too heavy.
@@ -55,19 +45,53 @@ Gas-powered vehicles might be less efficient at utilizing the fuel completely bu
 Panasonic is the leading battery cell manufacturer and energy-density is a limitation that all EV car manufacturers face.
 That’s the reason why major breakthrough EV adoption has been in the short-to-medium range vehicles and why long-haul electric truck manufacturing is harder.
 
-## Charging
+### Charging
 No one wants to wait for an hour every few 100 miles, so you need more charging stations and to charge batteries faster.
+To ensure that users can drive long range without having to worry about charging, a good quality the charging station infrastructure is needed.
 Charging stations cost a lot of money to build, making it difficult to cover larger areas.
 [Lack of a standard][ev-charging-standards] charging plug is no help.
 
 ![ev charging plugs]({{site.baseurl}}/img/ev/ev-charging-plugs.jpg)
 
-China is going to be a big market for EV manufactureres.
+China is going to be a big market for EV manufacturers.
 Nio has approached the charging problem from a unique angle in China - Battery-as-a-Service subscription model.
 They are building cars with battery-swapping capability and charging-stations that can swap battery pack in [just 5 minutes][5-min-swap].
 Starting in Nov 2018, it has already completed [a million swaps][nio-million-swaps] by end of 2020.
 
-![Battery Swap in action]({{site.baseurl}}/img/ev/battery-swap.mp4)
+<video muted autoplay controls>
+  <source src="{{site.baseurl}}/img/ev/battery-swap.mp4" type="video/mp4" alt="Battery Swap in Action">
+</video>
+
+## Autonomous Vehicle
+Driving is a very tedious and pretty lack-luster task, especially on long routes.
+Given a choice, I'd rather read a book than to drive myself.
+Still, you need to get from point A to point B somehow.
+Humans make mistakes, they lose attention, get tired.
+So much so that human error play a part in 90% of crashes.
+Machines on the other hand can do this task without getting tired at all.
+Attempt at autonomy aren't new but recent advances in sensors, computing power and machine learning are making is more possible now.
+
+![History of Autonomy]({{site.baseurl}}/img/ev/autonomy-history.webp)
+
+Autonomous vehicles are going to be the standard in the future.
+Self-driving cars are going to change society more than anything else in recent past.
+With all [level-5 self-driving vehicles][autonomy-levels] on road, car crashes will be a thing of the past.
+Traffic can also be significantly reduced by coordination of fully autonomous vehicles driving on road.
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/4CZc3erc_l4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+According to Navigant's [research][tsla-autonomous-vs-others], Ford and GM are among the leaders in the race for autonomous vehicle tech.
+TSLA has hype on its side, F & GM have experience, scale, higher earnings/profits and likely the tech too.
+
+![TSLA vs F vs GM autonomous driving]({{site.baseurl}}/img/ev/2020-navigant-av-leaderboard.webp)
+
+Apple is teaming with Hyundai but it’s still years away from production.
+
+The primary intent of owning a car is to go from point A to point B.
+With autonomous taxi service, you can reduce the cost of transportation significantly, something which hasn't changed much since the first Ford rolled out of assembly line.
+Google’s Waymo has teamed up with Chrysler and it is [targeting][waymo-robotaxi] ride-hailing market, already offering driverless rides in Arizona.
+
+![Waymo taxi]({{site.baseurl}}/img/ev/waymo-on-road.gif)
 
 ## Conclusion
 Electric Vehicles need to be the go-to choice for consumers.
@@ -88,3 +112,4 @@ It is going to be one of many options, we need more innovation and for it to hap
 
 [waymo-on-road]: https://1.bp.blogspot.com/-duCbXB2_Q8Y/X35E0dr-gvI/AAAAAAAAFMA/6tlgpcsiOf0PtXWxSwqnESLQyBw2_FS9ACNcBGAsYHQ/s16000/Blog%2BPost%2BDriver%2B-%2BALT.gif
 [battery-swap]: https://hmg-h-cdn.hearstapps.com/videos/batteryswap2-1598043032.mp4
+[autonomy-levels]: https://www.theglobeandmail.com/globe-drive/self-driving-cars-are-going-to-dramatically-change-our-world-so-when-does-the-revolution-begin/article32650833/
