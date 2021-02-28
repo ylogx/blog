@@ -5,6 +5,7 @@ subtitle: Analyzing the Autonomous/EV space, competition & challenges
 date: '2021-02-27T23:55:46.287769127-05:00'
 author: Shubham Chaudhary
 header-img: img/ev/self-driving-map.jpg
+permalink: autonomous-electric-vehicles
 comments: true
 published: true
 tags:
