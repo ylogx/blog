@@ -5,13 +5,14 @@ subtitle: Analyzing the Autonomous/EV Space, competition & challenges
 date: '2021-02-27T23:55:46.287769127-05:00'
 author: Shubham Chaudhary
 header-img: img/ev/2020-navigant-av-leaderboard.webp
-permalink: /autonomous-electric-vehicle
 comments: true
-published: false
+published: true
 tags:
   - thoughts
   - personal
   - opinion
+  - electric-vehicle
+  - autonomous-vehicle
   - self-driving
   - deep-learning
   - machine-learning
@@ -121,7 +122,6 @@ It is going to be one of many options, we need more innovation and for it to hap
 [tsla-next-nine]: https://www.cnbc.com/2020/12/14/tesla-valuation-more-than-nine-largest-carmakers-combined-why.html
 [nio-million-swaps]: https://insideevs.com/news/448165/nio-completed-1-millionth-battery-swap/
 [5-min-swap]: https://www.caranddriver.com/news/a33670482/nio-swappable-batteries-lease/
-
 [waymo-on-road]: https://1.bp.blogspot.com/-duCbXB2_Q8Y/X35E0dr-gvI/AAAAAAAAFMA/6tlgpcsiOf0PtXWxSwqnESLQyBw2_FS9ACNcBGAsYHQ/s16000/Blog%2BPost%2BDriver%2B-%2BALT.gif
 [battery-swap]: https://hmg-h-cdn.hearstapps.com/videos/batteryswap2-1598043032.mp4
 [autonomy-levels]: https://www.theglobeandmail.com/globe-drive/self-driving-cars-are-going-to-dramatically-change-our-world-so-when-does-the-revolution-begin/article32650833/
