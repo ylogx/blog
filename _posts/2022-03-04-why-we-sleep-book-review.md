@@ -140,7 +140,7 @@ relaxing activity until you feel sleepy.
 > Matthew Walker
 > This material may be protected by copyright.
 
-- [gr-review]: https://www.goodreads.com/review/show/3198659584
-- [sleep-book]: https://www.scribd.com/book/359457264/Why-We-Sleep-Unlocking-the-Power-of-Sleep-and-Dreams
-- [sleep-audiobook]: https://www.scribd.com/audiobook/360543909/Why-We-Sleep-Unlocking-the-Power-of-Sleep-and-Dreams
-- [scribd-promo]: https://www.scribd.com/g/6s7m7u
+[gr-review]: https://www.goodreads.com/review/show/3198659584
+[sleep-book]: https://www.scribd.com/book/359457264/Why-We-Sleep-Unlocking-the-Power-of-Sleep-and-Dreams
+[sleep-audiobook]: https://www.scribd.com/audiobook/360543909/Why-We-Sleep-Unlocking-the-Power-of-Sleep-and-Dreams
+[scribd-promo]: https://www.scribd.com/g/6s7m7u
