@@ -41,7 +41,17 @@ Personally, after starting the regular 8 hour uninterrupted sleep schedule, I ha
 
 ![sleep-architecture]({{site.baseurl}}/img/review/book/why-we-sleep/sleep-architecture.jpg)
 
-Understanding the architecture of sleep also comes in handy (Figure 8), a hypnogram. We sleep in 1.5 hour cycles where initial cycles are mainly filled with NREM sleep and the later cycles are filled with REM sleep. NREM sleep performs the work of weeding out and removing unnecessary connections. REM sleep is when we save our learning, strengthen the neural connections and dream. The last 1.5 hour section is when we get the maximum amount of REM sleep. We typically go into the waking stage around 3, 6 and 7.5 hour mark. This also means sleep hours aren’t equally divided, you can’t wake up early and finish your sleep by taking a nap. After fixing my sleep deficiency, I almost always wake up around the 6 hour mark (4*1.5hr) and I understand now and sleep more to finish the last 1.5hr part of the sleep cycle.
+Understanding the architecture of sleep also comes in handy (Figure 8), a hypnogram.
+We sleep in 1.5 hour cycles where initial cycles are mainly filled with NREM sleep and the later cycles are filled with REM sleep.
+We typically go into the waking stage around 3, 6 and 7.5 hour mark.
+
+![sleep-brainwaves]({{site.baseurl}}/img/review/book/why-we-sleep/sleep-brainwaves.jpg)
+
+NREM sleep performs the work of weeding out and removing unnecessary connections.
+REM sleep is when we save our learning, strengthen the neural connections and dream.
+The last 1.5 hour section is when we get the maximum amount of REM sleep.
+This also means sleep hours aren’t equally divided, you can’t wake up early and finish your sleep by taking a nap.
+After fixing my sleep deficiency, I almost always wake up around the 6 hour mark (4\*1.5hr) and I understand now and sleep more to finish the last 1.5hr part of the sleep cycle.
 
 ### Sleep Cycle
 
@@ -71,7 +81,7 @@ Last few chapters are great candidates for listening via audiobook.
 
 Scribd offers subscription service where you can read books, audiobooks and a lot more.
 You can find [books][sleep-book] and [audiobooks][sleep-audiobook] for Why We Sleep on Scribd.
-You can use my [promo link][scribd-promo] to get free 60 days of subscription.
+You can use this [promo link to get free 60 days of subscription][scribd-promo].
 
 ### What worked for me to get good sleep
 * Understand circadian rhythm and sleep pressure relation.
@@ -130,6 +140,7 @@ relaxing activity until you feel sleepy.
 > Matthew Walker
 > This material may be protected by copyright.
 
+- [gr-review]: https://www.goodreads.com/review/show/3198659584
 - [sleep-book]: https://www.scribd.com/book/359457264/Why-We-Sleep-Unlocking-the-Power-of-Sleep-and-Dreams
 - [sleep-audiobook]: https://www.scribd.com/audiobook/360543909/Why-We-Sleep-Unlocking-the-Power-of-Sleep-and-Dreams
 - [scribd-promo]: https://www.scribd.com/g/6s7m7u
