@@ -16,6 +16,17 @@ tags:
 ## 📚 Rating
 4.5 ⭐ / 5 🌟
 
+
+<a href="https://www.goodreads.com/book/show/34466963-why-we-sleep" style="float: left; padding-right: 20px"><img
+border="0" alt="Why We Sleep: Unlocking the Power of Sleep and Dreams"
+src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1556604137l/34466963._SX98_.jpg" /></a><a
+href="https://www.goodreads.com/book/show/34466963-why-we-sleep">Why We Sleep: Unlocking the Power of Sleep and
+Dreams</a> by <a href="https://www.goodreads.com/author/show/17598726.Matthew_Walker">Matthew Walker</a><br/>
+
+My goodreads rating: <a href="https://www.goodreads.com/review/show/3198659584">5 of 5 stars</a><br />
+<a href="https://www.goodreads.com/review/list/38698703-shubham-chaudhary">View all my reviews</a>
+
+
 ## Review
 I started reading this book last year. I read the first three chapters and that gave me a good enough idea that I stopped reading the book and started giving myself full 8 hour uninterrupted sleeping time. Now with a whole year of experiencing regular 8 hour sleep, as I finish this book I feel really good for picking this up in the first place.
 
