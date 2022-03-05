@@ -36,15 +36,31 @@ Understanding the architecture of sleep also comes in handy (Figure 8), a hypnog
 
 ![sleep-cycle]({{site.baseurl}}/img/review/book/why-we-sleep/sleep-cycle.jpg)
 
-Understanding the 24 hour circadian rhythm of the superchiasmatic nucleus and the sleep pressure of adenosine has also come in handy (Figure 4, 5, 6). There’s genetic evidence for the chronotype aka night owl vs morning larks. It’s important to understand which one are you, not everyone benefits from waking up at 5 am, everyone definitely benefits from sleeping full 5 sleep cycles. Also, you can’t fix your sleep schedule by staying awake the entire night, trust me I’ve tried, the book explains why. You have to shift your sleep schedule by slowly sleeping 0.5/1 hour earlier every day.
+Understanding the 24 hour circadian rhythm of the superchiasmatic nucleus and the sleep pressure of adenosine has also come in handy (Figure 4, 5, 6).
+There’s genetic evidence for the chronotype aka night owl vs morning larks.
+It’s important to understand which one are you, not everyone benefits from waking up at 5 am, everyone definitely benefits from sleeping full 5 sleep cycles.
+Also, you can’t fix your sleep schedule by staying awake the entire night, trust me I’ve tried, the book explains why.
+You have to shift your sleep schedule by slowly sleeping 0.5/1 hour earlier every day.
 
 ### Other
 
-After reading the chapter about age and sleep, I started recommending my parents to also start sleeping full 8 hours. There were some great tips along those later chapters like what to do when you are sleepy and you have to drive, answer: DON’T. There are tips about how to reduce sleep pressure but in general avoid driving in such situation. Drowsy driving vehicular accidents exceed those caused by alcohol and drugs. It’s crazy that we don’t see enough warning about lack of sleep as much as we see for alcohol.
+There were some great tips along those later chapters like what to do when you are sleepy and you have to drive, answer: DON’T.
+There are tips about how to reduce sleep pressure but in general avoid driving in such situation.
+Drowsy driving vehicular accidents exceed those caused by alcohol and drugs. It’s crazy that we don’t see enough warning about lack of sleep as much as we see for alcohol.
+
+![sleep-loss]({{site.baseurl}}/img/review/book/why-we-sleep/sleep-loss.jpg)
+
+After reading the chapter about age and sleep, I started recommending my parents to also start sleeping full 8 hours.
 
 ### How to consume?
 
-It is great to combine this with ebook and audiobook. Each chapter can, for the most part, be read individually, and out of order, without losing too much of its significance. All the chapters are self contained and can be read in any order. Last few chapters are great candidates for listening via audiobook.
+It is great to combine this with ebook and audiobook.
+All the chapters are self contained and can be read in any order.
+Last few chapters are great candidates for listening via audiobook.
+
+Scribd offers subscription service where you can read books, audiobooks and a lot more.
+You can find [books][sleep-book] and [audiobooks][sleep-audiobook] for Why We Sleep on Scribd.
+You can use my [promo link][scribd-promo] to get free 60 days of subscription.
 
 ### What worked for me to get good sleep
 * Understand circadian rhythm and sleep pressure relation.
@@ -102,3 +118,7 @@ relaxing activity until you feel sleepy.
 > Why We Sleep: Unlocking the Power of Sleep and Dreams
 > Matthew Walker
 > This material may be protected by copyright.
+
+- [sleep-book]: https://www.scribd.com/book/359457264/Why-We-Sleep-Unlocking-the-Power-of-Sleep-and-Dreams
+- [sleep-audiobook]: https://www.scribd.com/audiobook/360543909/Why-We-Sleep-Unlocking-the-Power-of-Sleep-and-Dreams
+- [scribd-promo]: https://www.scribd.com/g/6s7m7u
