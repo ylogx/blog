@@ -7,7 +7,7 @@ author: Shubham Chaudhary
 header-img: img/review/book/why-we-sleep/why-we-sleep-h.jpg
 permalink: review/book/why-we-sleep
 comments: true
-published: false
+published: true
 tags:
   - books
   - book-review
