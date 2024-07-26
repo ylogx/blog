@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Deep Learning for image classification
-subtitle: Training our first deep learning based image classifier and deploying it to production
+title: Deep Learning for Image Classification
+subtitle: Training and Deploying Our First Deep Learning-Based Image Classifier
 date: '2019-02-03T00:07:40.000+05:30'
 author: Shubham Chaudhary
 header-img: img/clazzify/fahm-gimp-dark.png
@@ -16,163 +16,73 @@ tags:
   - alexnet
 ---
 
-At [Zomato][zomato-homepage] we have more than half a billion images used in various aspects of our platform.
-On a daily basis, we deal with close to 100 thousand new images.
-When you look at the size of the data, this turns into petabytes of images in total,
-with a daily influx of approximately 500 GBs of fresh images.
-This blog will go in details about how we built a neural network based machine learning model to classify images based on
-their content into categories like food, ambiance, menu etc.
-We will also discuss about the challenges we faced when deploying such a model at Zomato's scale and
-our learning & evolution from deploying this first model.
+At [Zomato][zomato-homepage], we manage over half a billion images across our platform, with a daily influx of approximately 500 GBs of new images, totaling close to 100,000 images every day. This blog details our journey in building a neural network-based machine learning model to classify these images into categories like food, ambiance, menu, etc. We will also discuss the challenges we faced when deploying such a model at Zomato's scale and our learnings from this deployment.
 
-## Why do we need to classify images?
+## Why Do We Need to Classify Images?
 
-<!-- Image classification is the process of categorizing images into bins. -->
-As a restaurant search, discovery and delivery platform, the two biggest sources for images are:
+As a restaurant search, discovery, and delivery platform, our two primary sources for images are:
 
-1. Images uploaded by users when they visit/order a restaurant and write reviews about them on Zomato
-2. Images our team collects from the restaurants while listing them on the platform
+1. User-uploaded images when they visit or order from a restaurant and write reviews.
+2. Images collected by our team from restaurants during the listing process.
 
-At Zomato, we have several use-cases for image classification:
+At Zomato, image classification serves several use cases:
 
-1. We can help users find out ambiance images quickly if we show images in collections like food, ambiance.
-Earlier for some restaurants, we manually tagged ~10-20 images as food & ambiance shots.
-To make this more useful for our users, we wanted to categorize all images uploaded on any restaurant across platform.
-2. The ratio of images uploaded on zomato is heavily biased towards food as compared to ambiance.
-This helps quickly surface the ambiance images to users.
-3. The quality of the content of our platform is very important to us.
-To ensure good content quality, we have a team of moderators who work tirelessly to ensure that only the best content
-is show to our users.
-Having this tagging like human/selfies etc. will help us improve the overall photo moderation TAT.
-4. Along similar lines, if something looks like a menu,
-we'd like our content team to have a look at it and not show this to our users.
-We want to ensure that only the highest quality menu images are shown to users
-(the ones manually verified by our data collection team)
+1. **User Experience**: We can help users find ambiance images quickly by categorizing images into collections like food and ambiance. Previously, we manually tagged around 10-20 images per restaurant. Automating this process allows us to categorize all images uploaded across the platform.
+2. **Content Balance**: The majority of images uploaded on Zomato are food images. By categorizing images, we can surface ambiance images more effectively.
+3. **Content Quality**: Ensuring high-quality content is crucial. Automated tagging (e.g., human, selfies) can improve our photo moderation turnaround time.
+4. **Menu Management**: Identifying menu images helps our content team verify and ensure that only high-quality menu images are shown to users.
 
-## How we built this?
+## How We Built This
 
-Image Classification is pretty straight forward from tech standpoint when you're doing it in jupyter notebook.
-It was more challenging for us because this was our first deep learning based project going live.
-Moreover, to exacerbate our problems, the scale for this was enormous.
-We had to build a system that could moderate close to half a million images on a daily basis.
-We trained this model for the first time in 2016.
-This blog post will be a combination of things that we did when we built this model for the first time and
-also pointer to what we would do when retraining this now.
+Image classification is straightforward in a Jupyter notebook but challenging at Zomato's scale. We needed a system to moderate close to half a million images daily. This blog post covers our initial model built in 2016 and insights for future retraining.
 
-When building the model, we used [luigi][luigi-home] to tie our data gathering, data preprocessing, model training and validation together.
-Luigi helped us build all these as a DAG based pipeline, since clearly each step depended on other steps for the final step to be completed.
-Luigi also provided a nice visual interface to monitor progress of our data & model pipeline.
+### Dataset Gathering
 
-### Dataset Gathering:
-Before we could prove to our PMs on whether this "new deep learning" based method would work or not,
-we needed to collect labeled data - a whole lot of it.
-The labels we decided to get started with were - food, ambiance, menu, human.
-Future collections could be indoor shots, outdoor shots, drinks, dishes.
+Before convincing our PMs about the feasibility of deep learning, we needed a large labeled dataset. Our initial labels were food, ambiance, menu, and human. Future labels could include indoor shots, outdoor shots, drinks, and dishes.
 
 ![food, ambiance, menu, human image collage][fahm-collage]
 
 #### Food & Ambiance
-At zomato, we had manually tagged images, marked as food and ambiance shots.
-We downloaded 50,000 each - food and ambiance images for classification problem.
+
+We used manually tagged images from Zomato, downloading 50,000 food and 50,000 ambiance images.
 
 #### Menu
-Generating dataset for menus was the easiest.
-At zomato we have tons of menus, manually tagged and clustered into categories (that's kinda how the company started).
-We downloaded 50,000 menu images from s3 distributed across randomly selected restaurants on zomato.
+
+Menu dataset generation was straightforward due to our extensive, manually tagged menu collection. We downloaded 50,000 menu images from S3.
 
 #### Humans
-Finding the right dataset for humans was tricky.
-There is a public dataset - [Youtube dataset][youtube-dataset].
-The problem with this dataset is that, it contains shots which are mixture of multiple scenes.
-For example some images contain humans, but it can also have characteristics of an ambiance shot.
-This leads to some incorrect classification which we planned to tackle once we had a basic model ready.
-Using this slightly incorrect basic model, we can generate approximate labels
-and get them corrected by our internal moderation team much quickly than labelling images from scratch.
 
-<!-- ![confusing image][confusing-youtube-human-image] -->
-
-Youtube dataset did not have a lot of face shots in it.
-To help the model learn face shots, we used [lfw dataset by umass][lfw-dataset] aka labeled faces in the wild dataset.
+Human dataset creation was tricky. We used the [YouTube dataset][youtube-dataset], despite its mixed scenes. Using an initial model, we generated approximate labels, which our moderation team quickly corrected. Additionally, we used the [LFW dataset][lfw-dataset] for face shots.
 
 ![lfw images preview][lfw-images-preview]
 
 ### Dataset Preprocessing
-Now after all these exercises, we have a lot of data in our folders - food, ambiance, menu and human.
-Next problem is that when you're training a model, you need to iterate over this data as a dataframe and pass it to keras.
-We used [Hierarchical Data Format][hdf] ([HDF5][h5py-home]) to build a dataframe that was iterable and stayed out of memory.
-Using the [pythonic interface][h5py-docs] of [h5py][h5py-git] you can slice and dice terabytes of data,
-as if they were numpy arrays in memory.
-We resized each image to 227x227 dimension and performed some cleaning steps.
-We created multiple variations of each image by using rotation, scaling, zooming & cropping.
-When retraining in future we would also look into using recordio format for storing images for classification tasks.
 
+With a large dataset categorized into food, ambiance, menu, and human, the next step was preprocessing. We used [HDF5][h5py-home] to build an out-of-memory iterable dataframe. Each image was resized to 227x227, cleaned, and augmented through rotation, scaling, zooming, and cropping. Future retraining might utilize the RecordIO format for storing images.
 
-## Training the Model
+### Training the Model
 
-We started with [alexnet][alexnet-paper] as our model.
-Back in 2016, alexnet was a proven good model with multiple [open source implementations][alexnet-implementation] available.
-We also tried [inception v3][inception-v3-paper] and [google lenet][goog-lenet-paper].
-At the time of this post, there are several more accurate and optimal models available like resnet, mobilenet etc.
-We decided to use [keras][keras] as our framework because we liked its capability to switch the backend engine (theano, tensorflow) in future.
-Back then it wasn't as simple as now to install tensorflow `pip install tensorflow`,
-so we used [theano][theano] as our engine because it gave reliable, consistent results and was easier to setup with keras.
-Keras would still be the choice for writing our models but doing this now we would use something like
-[AWS Sagemaker][aws-sagemaker] for training our models.
+We started with [AlexNet][alexnet-paper], a proven model in 2016, and also experimented with [Inception v3][inception-v3-paper] and [Google LeNet][goog-lenet-paper]. Given the complexities of setting up TensorFlow back then, we used [Theano][theano] as our backend with [Keras][keras] as the framework. Today, we would use [AWS Sagemaker][aws-sagemaker] for training.
 
 ![Alexnet layers description image][alexnet-layers-image]
 
-We trained the initial few iterations of our models on our in-house GPU servers. Then we shifted to [AWS GPU p2.xlarge
- instances][aws-gpu-instances].
-We trained our models from scratch instead of doing transfer learning on an existing imagenet model
-to better fit our restaurant industry domain photos.
-We had 50000 images for each of our 4 classes - food, ambiance, menu, human.
-As shown in the graph below, we were able to achieve ~92% validation accuracy.
+Our models were initially trained on in-house GPU servers and later on [AWS GPU p2.xlarge instances][aws-gpu-instances]. We trained from scratch to better fit our restaurant domain photos, achieving ~92% validation accuracy with 50,000 images per class (food, ambiance, menu, human).
 
 ![Accuracy-Loss Graph][clazzify-accuracy-loss-graph]
 
+### Deploying This in Production
 
-## Deploying this in production
+We created an internal API based on Flask for model inference, later deploying it on AWS Elastic Beanstalk with Docker. Jenkins automated our deployment pipeline, running tests and creating Docker images containing the code and model. This API processed images in real-time, improving our moderation and user experience.
 
-For serving the model, we created an internal API based on flask.
-We added authentication layers on top of it and exposed it to our internal vpc network.
-Today one would use something like onnx and tensorflow serving for model inference.
-Back in 2016, there wasn't much work done on the inference of ML models, so we went ahead with an internal flask API.
-We dockerized our API using a docker container based on miniconda3.
-After every code merge, jenkins would run the unit tests and create the final docker image.
-The docker image will contain both the code and the latest model.
-Then we'd run automated tests on this image to check if it is doing good inference on a set of images.
-Once this test is passed, we deploy this image on AWS elastic beanstalk,
-where this API is auto scaled based on the input request load.
-
-Once this API is up, from our web app whenever an image is uploaded on Zomato, we push it in a queue.
-There are multiple workers running that pick the image from the queue,
-ask the API for inference scores and save these scores in our database.
-
-We started using this in the backend for moderation and several other internal usecases.
-On the product side, we made this [live][project-deep-announcement] for Food Ambiance classification.
-We first made this live on the web and apps soon added this in upcoming releases.
-Image below show results before and after using image classification.
+When an image is uploaded on Zomato, it is pushed to a queue, processed by multiple workers, and the classification scores are saved in our database. This system was initially used for backend moderation and later for live Food-Ambiance classification on our web and app platforms.
 
 ![Food Ambiance - results before and after classification][food-ambiance-web-gimp]
 
-This example shows how image classification can make it easier to find ambiance shots
-in this case when the starting images of the restaurant page are predominantly filled with food shots.
+### Evolution
 
+From our first model, we learned to streamline our data gathering and model training processes, reducing time-to-deployment. Future blog posts will cover our evolving ML training processes and other models in production. Stay tuned for updates.
 
-## Evolution
-
-We learnt a lot from training and deploying this first model in production.
-Apart from evolving this model, we have evolved our data gathering and model training
-process significantly to reduce the TAT from an idea to the model generation and API creation.
-We will be making future blog posts about our ML training process and other machine learning models in production soon.
-Please stay tuned, watch out for that ML tag and subscribe to the blog.
-
-We are rapidly expanding our machine learning team and have grown in number by 5x in just last year.
-We are hiring, please checkout our [careers page][zomato-careers-page].
-
-<!-- Tensorflow Lite -->
-
-<!--https://docs.google.com/presentation/d/1MaFPaTSEMG90qzjFIQbfDdCKT-p0xYqS7C6Pz-W6sZE/edit#slide=id.g198284fc4a_0_65-->
+We are rapidly expanding our machine learning team. Check out our [careers page][zomato-careers-page] if you’re interested in joining us.
 
 [food-ambiance-web]: {{site.baseurl}}/img/clazzify/food-ambiance.png
 [food-ambiance-web-gimp]: {{site.baseurl}}/img/clazzify/food-ambiance-in-product.png
@@ -191,7 +101,7 @@ We are hiring, please checkout our [careers page][zomato-careers-page].
 [inception-v3-paper]: https://arxiv.org/pdf/1512.00567.pdf
 [goog-lenet-paper]: https://www.cs.unc.edu/~wliu/papers/GoogLeNet.pdf
 [alexnet-implementation]: https://github.com/Zomato/convnets-keras
-[alexnet-layers-image]:  {{site.baseurl}}/img/clazzify/alexnet-layers.png
+[alexnet-layers-image]: {{site.baseurl}}/img/clazzify/alexnet-layers.png
 [keras]: https://keras.io/
 [theano]: https://github.com/Theano/Theano
 [aws-gpu-instances]: https://aws.amazon.com/ec2/instance-types/#Accelerated_Computing
