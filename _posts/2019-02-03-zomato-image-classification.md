@@ -36,6 +36,8 @@ At Zomato, image classification serves several use cases:
 
 Image classification is straightforward in a Jupyter notebook but challenging at Zomato's scale. We needed a system to moderate close to half a million images daily. This blog post covers our initial model built in 2016 and insights for future retraining.
 
+When building the model, we used [Luigi][luigi-home] to tie our data gathering, data preprocessing, model training, and validation together. Luigi helped us build a DAG-based pipeline, ensuring that each step depended on the completion of previous steps. Luigi also provided a visual interface to monitor the progress of our data and model pipeline.
+
 ### Dataset Gathering
 
 Before convincing our PMs about the feasibility of deep learning, we needed a large labeled dataset. Our initial labels were food, ambiance, menu, and human. Future labels could include indoor shots, outdoor shots, drinks, and dishes.
@@ -72,7 +74,7 @@ Our models were initially trained on in-house GPU servers and later on [AWS GPU 
 
 ### Deploying This in Production
 
-We created an internal API based on Flask for model inference, later deploying it on AWS Elastic Beanstalk with Docker. Jenkins automated our deployment pipeline, running tests and creating Docker images containing the code and model. This API processed images in real-time, improving our moderation and user experience.
+For model inference, we created an internal API based on Flask, deployed on AWS Elastic Beanstalk with Docker. Jenkins automated our deployment pipeline, running tests and creating Docker images containing the code and model. This API processed images in real-time, improving our moderation and user experience.
 
 When an image is uploaded on Zomato, it is pushed to a queue, processed by multiple workers, and the classification scores are saved in our database. This system was initially used for backend moderation and later for live Food-Ambiance classification on our web and app platforms.
 
