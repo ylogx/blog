@@ -18,7 +18,20 @@ tags:
 
 ## Introduction
 
-At [Zomato][zomato-homepage], we manage more than half a billion images, which play a crucial role across various aspects of our platform. Every day, we process close to 100,000 new images, contributing to petabytes of data, with a daily influx of approximately 500 GB of fresh visual data. In this blog, we delve into how we built a neural network-based machine learning model to classify these images into categories like food, ambiance, menu, and more. We will also explore the challenges we encountered when deploying such a model at Zomato’s scale and share the lessons we learned from launching this initial model.
+At [Zomato][zomato-homepage], we manage more than half a billion images, which are integral to various aspects of our platform. Every day, we process close to 100,000 new images, contributing to petabytes of data, with a daily influx of approximately 500 GB of fresh visual content.
+
+In this blog, we delve into how we built a neural network-based machine learning model to classify these images into categories like food, ambiance, menu, and more. This post is particularly valuable for professionals at startups deploying their first machine learning use case, students eager to learn how to turn innovative ideas into practical solutions, and anyone interested in the technical nuances of scaling deep learning models in a production environment.
+
+### What You’ll Learn
+
+The motivation behind this post stems from our journey of taking a deep learning model from concept to production, all while navigating the unique challenges posed by Zomato’s scale. Whether you're a data scientist at a startup, a student exploring machine learning, or an engineer looking to refine your deployment strategies, this post offers insights that are applicable across various stages of your project.
+By the end of this blog, you will gain:
+
+1. **A Deep Understanding of Image Classification**: Learn how we approached categorizing vast amounts of visual data into meaningful categories using neural networks.
+2. **Practical Insights on Deployment**: Explore the challenges we faced in deploying our first deep learning model at scale and how we overcame them.
+3. **Lessons from Real-World Experience**: Discover the lessons we learned from launching this model into production, including what we would do differently today.
+
+Whether you're just starting out or looking to refine your machine learning deployment process, this blog post provides actionable insights that can help you navigate the complexities of building and deploying deep learning models.
 
 ## The Need for Image Classification
 
