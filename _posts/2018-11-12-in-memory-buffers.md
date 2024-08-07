@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Use in memory buffers to avoid disk IO
-subtitle: Avoiding writing to files by using memory buffers like BytesIO
+title: Use In-Memory Buffers to Avoid Disk IO
+subtitle: Optimizing Image Processing with BytesIO in Python
 date: '2018-11-12T23:59:16.758469000+05:30'
 author: Shubham Chaudhary
 permalink: /in-memory-buffers
@@ -15,11 +15,9 @@ tags:
   - zomato
 ---
 
-At [zomato][zblog] we work with a lot of images, close to hundred thousand new images every day.
-There are a lot of usecases where we need to download images,
-process them, and then pass them to our models.
-The usual workflow is to fetch the image from a url, save it in a file and
-then pass that filepath around for further processing.
+At [Zomato][zblog], we handle a vast number of images, with close to a hundred thousand new images daily. Often, we need to download, process, and then pass these images to our models. The traditional workflow involves fetching an image from a URL, saving it to a file, and then passing that file path for further processing.
+
+### Traditional Workflow
 
 ```python
 import logging
@@ -43,25 +41,16 @@ image_path = download_image(url)
 
 img = cv2.imread(image_path)
 resized_img = cv2.resize(img, (299, 299))
-# preprocess(resized_image)
+# preprocess(resized_img)
 # prediction_score = model.predict(resized_img)
 os.remove(image_path)
 ```
 
-The problem with this workflow is that we create a lot of unnecessary disk IO.
-When you do this for a few images it is fine, but when you're processing
-millions of images at zomato scale, this is a lot of wastage.
-<!--
-Also when we run this in our dockerized environment, we create a lot of temporary files.
--->
-We should not have to write it to disk only to later pass it to another function for loading again.
+While this approach works for a few images, it creates significant unnecessary disk IO when processing millions of images at Zomato's scale. Additionally, in a dockerized environment, it results in numerous temporary files.
 
-The solution for this is buffered streams.
-They provide you an interface similar to Raw I/O device but are actually stored in RAM.
-In python, you can create an in memory buffered streams using [`io.BytesIO`][io.BytesIO].
-You can simply load the image into an in-memory buffer and this buffer can be passed around as a file pointer.
-This buffer is deleted when you call `close` method (or once you go out of context when using context manager).
+### Optimized Workflow with In-Memory Buffers
 
+To eliminate unnecessary disk IO, we can use in-memory buffers. In Python, `io.BytesIO` allows you to create a buffer in RAM, which can be used like a file pointer and is automatically deleted when closed or goes out of context when using context manager.
 
 ```python
 from io import BytesIO
@@ -78,29 +67,29 @@ file_bytes = np.asarray(bytearray(image_data.read()), dtype=np.uint8)
 img = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
 image_data.close()
 resized_img = cv2.resize(img, (299, 299))
-# preprocess(resized_image)
+# preprocess(resized_img)
 # prediction_score = model.predict(resized_img)
 ```
 
-Since we are using `imdecode`, we don't even have to create a bytes io buffer. 
-We can simplify this code as `np.asarray(bytearray(response_object.content), dtype=np.uint8)`
+Using `imdecode`, we can simplify the process further, eliminating the need for a bytes IO buffer.
 
 ```python
 import cv2
 import numpy as np
 import requests
 
-
 url = 'https://chaudhary.page.link/test-zomato-img'
 response_object = requests.get(url)
 file_bytes = np.asarray(bytearray(response_object.content), dtype=np.uint8)
 img = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
 resized_img = cv2.resize(img, (299, 299))
-# preprocess(resized_image)
+# preprocess(resized_img)
 # prediction_score = model.predict(resized_img)
 ```
 
-To analyse the performance of these methods, I wrote a simple test script. Here are the results on my system:
+### Performance Analysis
+
+To analyze the performance of these methods, I conducted a simple test. Here are the results on my system:
 
 ```
 With File IO: 35.4 ms ± 2.07 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
@@ -108,13 +97,9 @@ With Bytes IO: 35.1 ms ± 3.05 ms per loop (mean ± std. dev. of 7 runs, 10 loop
 With Direct Decode: 34.6 ms ± 1.74 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 ```
 
-The bytes IO is looking better than file IO,
-but this is statistically insufficient to prove if one is better than the other.
-However we know that the latter methods are not creating unnecessary disk IO, something which isn't measured by this perf test.
-We can split this into multiple scripts and add a strace to see the number of OPEN calls, which will be lower in the latter methods.
+The Bytes IO reduce unnecessary disk IO, which isn't measured in this test, even though the performance difference is minimal. Splitting the process into multiple scripts and adding `strace` can help see the number of `OPEN` calls, which will be lower in the in-memory methods.
 
-The code for generating these perf numbers is simple to run and available [here][perf-code-gist].
-Please let me know if you are able to reproduce similar results.
+You can find the code to generate these performance numbers [here][perf-code-gist]. Let me know if you achieve similar results.
 
 <!--
 <script src="https://gist.github.com/7b5d7f0957a4aa3c84c010f3d7f27643.js"></script>
@@ -123,3 +108,7 @@ Please let me know if you are able to reproduce similar results.
 [io.BytesIO]: https://docs.python.org/3/library/io.html#io.BytesIO
 [perf-code-gist]: https://gist.github.com/7b5d7f0957a4aa3c84c010f3d7f27643
 [zblog]: https://www.zomato.com/blog/
+
+### Conclusion
+
+Using in-memory buffers can significantly optimize image processing workflows by reducing disk IO. This approach is especially beneficial at large scales, such as at Zomato, where it can lead to considerable performance improvements and resource savings.
