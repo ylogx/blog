@@ -24,14 +24,15 @@ In this blog, we delve into how we built a neural network-based machine learning
 
 ### What You’ll Learn
 
-The motivation behind this post stems from our journey of taking a deep learning model from concept to production, all while navigating the unique challenges posed by Zomato’s scale. Whether you're a data scientist at a startup, a student exploring machine learning, or an engineer looking to refine your deployment strategies, this post offers insights that are applicable across various stages of your project.
-By the end of this blog, you will gain:
+This post is driven by our journey of taking a deep learning model from concept to production, addressing the unique challenges of operating at Zomato’s scale. Whether you’re a data scientist, an engineer refining your deployment strategies, a tech enthusiast, or a professional exploring the practical applications of AI, the insights shared here are relevant across various stages of a machine learning project.
 
-1. **A Deep Understanding of Image Classification**: Learn how we approached categorizing vast amounts of visual data into meaningful categories using neural networks.
-2. **Practical Insights on Deployment**: Explore the challenges we faced in deploying our first deep learning model at scale and how we overcame them.
-3. **Lessons from Real-World Experience**: Discover the lessons we learned from launching this model into production, including what we would do differently today.
+By the end of this blog, you will have gained:
 
-Whether you're just starting out or looking to refine your machine learning deployment process, this blog post provides actionable insights that can help you navigate the complexities of building and deploying deep learning models.
+1. **Comprehensive Understanding of Image Classification**: Explore how we systematically approached the categorization of vast amounts of visual data into meaningful categories using neural networks.
+2. **Valuable Practical Insights on Deployment**: Understand the challenges we faced when deploying our first deep learning model at scale, and learn how we successfully navigated these obstacles.
+3. **Key Lessons from Real-World Implementation**: Discover practical lessons from our experience deploying this model in production, including reflections on what we would do differently if we were to undertake this project today.
+
+Whether you’re just starting out, looking to refine your machine learning deployment process, or simply interested in the application of deep learning at scale, this blog post offers actionable insights to help you navigate the complexities of building and deploying AI models effectively.
 
 ## The Need for Image Classification
 
