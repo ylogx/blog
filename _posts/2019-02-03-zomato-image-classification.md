@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Deep Learning for Image Classification
-subtitle: Training and Deploying Our First Deep Learning-Based Image Classifier
+subtitle: "Training and Deploying Zomato's First Deep Learning-Based Image Classifier"
 date: '2019-02-03T00:07:40.000+05:30'
 author: Shubham Chaudhary
 header-img: img/clazzify/fahm-gimp-dark.png
@@ -16,23 +16,24 @@ tags:
   - alexnet
 ---
 
-At [Zomato][zomato-homepage], we manage over half a billion images across our platform, with a daily influx of approximately 500 GBs of new images, totaling close to 100,000 images every day. This blog details our journey in building a neural network-based machine learning model to classify these images into categories like food, ambiance, menu, etc. We will also discuss the challenges we faced when deploying such a model at Zomato's scale and our learnings from this deployment.
+## Introduction
+At [Zomato][zomato-homepage], we manage over half a billion images across our platform, with a daily influx of approximately 500 GBs of fresh visual data, totaling close to 100,000 new images every day. This blog details our journey in building a neural network-based machine learning model to classify these images into categories like food, ambiance, menu, etc. We will also discuss the challenges we faced when deploying such a model at Zomato's scale and our learnings from this deployment.
 
-## Why Do We Need to Classify Images?
+## The Need for Image Classification
 
-As a restaurant search, discovery, and delivery platform, our two primary sources for images are:
+As a restaurant search, discovery, and delivery platform, our primary sources of images are:
 
-1. User-uploaded images when they visit or order from a restaurant and write reviews.
-2. Images collected by our team from restaurants during the listing process.
+1. User-generated content from restaurant visit and food order reviews.
+2. Professional photography from our restaurant listing team.
 
-At Zomato, image classification serves several use cases:
+Image classification serves several critical functions at Zomato:
 
 1. **User Experience**: We can help users find ambiance images quickly by categorizing images into collections like food and ambiance. Previously, we manually tagged around 10-20 images per restaurant. Automating this process allows us to categorize all images uploaded across the platform.
 2. **Content Balance**: The majority of images uploaded on Zomato are food images. By categorizing images, we can surface ambiance images more effectively.
 3. **Content Quality**: Ensuring high-quality content is crucial. Automated tagging (e.g., human, selfies) can improve our photo moderation turnaround time.
 4. **Menu Management**: Identifying menu images helps our content team verify and ensure that only high-quality menu images are shown to users.
 
-## How We Built This
+## Building the Classifier
 
 Image classification is straightforward in a Jupyter notebook but challenging at Zomato's scale. We needed a system to moderate close to half a million images daily. This blog post covers our initial model built in 2016 and insights for future retraining.
 
