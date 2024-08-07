@@ -55,17 +55,17 @@ Menu dataset generation was straightforward due to our extensive, manually tagge
 
 #### Humans
 
-Human dataset creation was tricky. We used the [YouTube dataset][youtube-dataset], despite its mixed scenes. Using an initial model, we generated approximate labels, which our moderation team quickly corrected. Additionally, we used the [LFW dataset][lfw-dataset] for face shots.
+Human dataset creation was tricky. We used the [YouTube dataset][youtube-dataset], despite its mixed scenes. Using an initial model, we generated approximate labels, which our moderation team quickly corrected. Additionally, to suppliment this dataset, we used the [LFW dataset][lfw-dataset] for face shots.
 
 ![lfw images preview][lfw-images-preview]
 
 ### Dataset Preprocessing
 
-With a large dataset categorized into food, ambiance, menu, and human, the next step was preprocessing. We used [HDF5][h5py-home] to build an out-of-memory iterable dataframe. Each image was resized to 227x227, cleaned, and augmented through rotation, scaling, zooming, and cropping. Future retraining might utilize the RecordIO format for storing images.
+With a large dataset categorized into food, ambiance, menu, and human, the next step was preprocessing. We used [Hierarchical Data Format (HDF5)][h5py-home] to build an out-of-memory iterable dataframe. Using the pythonic interface of h5py allowed slicing and dicing terabytes of data, as if they were numpy arrays in-memory. Each image was resized to 227x227, cleaned, and augmented through rotation, scaling, zooming, and cropping. Future retraining might utilize the RecordIO format for storing images.
 
 ### Training the Model
 
-We started with [AlexNet][alexnet-paper], a proven model in 2016, and also experimented with [Inception v3][inception-v3-paper] and [Google LeNet][goog-lenet-paper]. Given the complexities of setting up TensorFlow back then, we used [Theano][theano] as our backend with [Keras][keras] as the framework. Today, we would use [AWS Sagemaker][aws-sagemaker] for training.
+We started with [AlexNet][alexnet-paper], a proven [open-source][alexnet-implementation] model in 2016, and also experimented with [Inception v3][inception-v3-paper] and [Google LeNet][goog-lenet-paper]. Given the complexities of setting up TensorFlow back then due to lack of pip packages, we used [Keras][keras] as the framework with [Theano][theano] as the backend. Today, we would still use Keras but with [AWS Sagemaker][aws-sagemaker] for training.
 
 ![Alexnet layers description image][alexnet-layers-image]
 
@@ -73,19 +73,27 @@ Our models were initially trained on in-house GPU servers and later on [AWS GPU 
 
 ![Accuracy-Loss Graph][clazzify-accuracy-loss-graph]
 
-### Deploying This in Production
+### Production Deployment
 
-For model inference, we created an internal API based on Flask, deployed on AWS Elastic Beanstalk with Docker. Jenkins automated our deployment pipeline, running tests and creating Docker images containing the code and model. This API processed images in real-time, improving our moderation and user experience.
+For serving the model, we developed an internal API using Flask. We enhanced it with authentication layers and deployed it within our internal VPC network. While today, tools like ONNX and TensorFlow Serving are commonly used for model inference, back in 2016, the landscape for ML model inference was still maturing. As a result, we chose to proceed with a Flask-based API.
 
-When an image is uploaded on Zomato, it is pushed to a queue, processed by multiple workers, and the classification scores are saved in our database. This system was initially used for backend moderation and later for live Food-Ambiance classification on our web and app platforms.
+We containerized the API using Docker, with a Miniconda3 base image. After every code merge, Jenkins would run unit tests and build the final Docker image, which included both the application code and the latest version of the model. Automated tests were then executed on this image to validate the inference accuracy on a predefined set of images. Once these tests passed, the Docker image was deployed to AWS Elastic Beanstalk, where the API could automatically scale based on incoming request load.
+
+Once the API was live, every time an image was uploaded to Zomato, it was queued for processing. Multiple workers would pick the image from the queue, request inference scores from the API, and save these scores in our database.
+
+Initially, we utilized this setup on the backend for moderation and various other internal use cases. On the product side, we made this [live][project-deep-announcement] for Food & Ambiance classification. It was first integrated into our web platform, with upcoming releases soon adding it to our mobile apps. The image below illustrates the impact of using image classification, showing the results before and after its implementation.
 
 ![Food Ambiance - results before and after classification][food-ambiance-web-gimp]
 
+This example highlights how image classification can make it easier to find ambiance shots, especially when the initial images on the restaurant page are predominantly food shots.
+
+
 ### Evolution
 
-From our first model, we learned to streamline our data gathering and model training processes, reducing time-to-deployment. Future blog posts will cover our evolving ML training processes and other models in production. Stay tuned for updates.
+From our first model, we learned to streamline our data gathering and model training processes significantly to reduce the TAT from an idea to the model generation, reducing time-to-deployment. Future blog posts will cover our evolving ML training processes and other models in production. Stay tuned for updates.
 
-We are rapidly expanding our machine learning team. Check out our [careers page][zomato-careers-page] if you’re interested in joining us.
+We are rapidly expanding our machine learning team and have grown in number by 5x in just last year. Check out our [careers page][zomato-careers-page] if you’re interested in joining us.
+
 
 [food-ambiance-web]: {{site.baseurl}}/img/clazzify/food-ambiance.png
 [food-ambiance-web-gimp]: {{site.baseurl}}/img/clazzify/food-ambiance-in-product.png
