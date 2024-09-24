@@ -23,7 +23,7 @@ As we enter this Intelligence Age, we must ask ourselves: How will these changes
 
 ### Economic Shifts: Decoupling Labor from Value
 
-From the dawn of human history, labor has been the bedrock of economic value. Agriculture required physical effort to produce food, just as industry needed human hands to run factories. But AI introduces a new economic paradigm: a world where cognitive labor—the very thing that defined human superiority—can be automated. As machines take on more complex tasks, from financial modeling to legal analysis, we begin to see the decoupling of human labor from economic productivity.
+From the dawn of human history, labor has been the bedrock of economic value. Agriculture required physical effort to produce food, just as industry needed human hands to run factories. But AI introduces a new economic paradigm: a world where [cognitive labor](https://openai.com/index/learning-to-reason-with-llms/)—the very thing that defined human superiority—can be automated. As machines take on more complex tasks, from financial modeling to legal analysis, we begin to see the decoupling of human labor from economic productivity.
 
 For those of us who have worked within this field, building and scaling AI systems, the implications are clear. AI doesn’t just automate repetitive tasks; it can now handle [nuanced decision-making processes](https://openai.com/index/openai-o1-system-card/), fundamentally altering the role of human workers. In this new economy, value creation increasingly shifts from labor to ownership of technology and data. The control of AI systems and the data that powers them could lead to a concentration of wealth and power in the hands of a few, deepening inequality unless economic models are rethought.
 
