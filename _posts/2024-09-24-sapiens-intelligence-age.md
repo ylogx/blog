@@ -2,7 +2,7 @@
 layout: post
 title: Sapiens at the Crossroads of the Intelligence Age
 subtitle: Reflecting on How Abundant AI Reshapes the Evolution of Human Intelligence, Economic Systems, and Global Power
-date: '2024-09-24T01:22:26.56980686-08:00'
+date: '2024-09-24T01:22:26.117657000-07:00'
 author: Shubham Chaudhary
 header-img: img/ai/intelligence-age/intelligence-age-o1-background.webp
 permalink: ai/sapiens-intelligence-age
@@ -11,6 +11,7 @@ published: true
 tags:
   - artificial-intelligence
   - ai
+  - ml
 ---
 
 
