@@ -15,7 +15,7 @@ tags:
 
 Humanity has always been shaped by [the tools we create](https://www.britannica.com/story/history-of-technology-timeline). From fire and the wheel to agriculture and steam engines, each technological leap has redefined what it means to be human. These advancements didn’t just make life easier; they fundamentally reshaped societies, economies, and power structures. As we enter [the *Intelligence Age*](https://ia.samaltman.com), where [artificial intelligence](https://www.britannica.com/science/history-of-artificial-intelligence) becomes an [omnipresent resource](https://x.com/sama/status/1813984333352649087), we stand on the cusp of a transformation as significant as the Cognitive Revolution that set Homo sapiens apart from other species. Just as the ability to imagine and communicate abstract ideas allowed humans to dominate the planet, AI has the potential to redefine intelligence itself—both human and artificial—ushering in a new era of progress, but also deep disruption.
 
-![](https://i.imgur.com/Zz2AGv5.jpeg)
+![o1-ai-reasoning-performance]({{site.baseurl}}/img/ai/intelligence-age/o1-ai-reasoning-performance.webp)
 
 Reflecting on the last decade, working at the intersection of AI and machine learning since the [early breakthroughs in deep learning](https://www.britannica.com/technology/neural-network), I've witnessed firsthand the rapid acceleration of what machines can accomplish. What was once a field of theoretical promise became an engine for real-world transformation, especially as deep learning models began scaling with access to more data and computational power. Having contributed to this evolution, building systems ranging from recommendations & search systems to complex data understanding ML models & data pipelines, I’ve seen how AI’s growth doesn’t just affect the technical domain—it profoundly shapes economies, societies, and global geopolitics.
 
@@ -25,9 +25,11 @@ As we enter this Intelligence Age, we must ask ourselves: How will these changes
 
 From the dawn of human history, labor has been the bedrock of economic value. Agriculture required physical effort to produce food, just as industry needed human hands to run factories. But AI introduces a new economic paradigm: a world where [cognitive labor](https://openai.com/index/learning-to-reason-with-llms/)—the very thing that defined human superiority—can be automated. As machines take on more complex tasks, from financial modeling to legal analysis, we begin to see the decoupling of human labor from economic productivity.
 
+![sapiens-timeline-of-history]({{site.baseurl}}/img/ai/intelligence-age/sapiens-timeline-of-history.jpg)
+
 For those of us who have worked within this field, building and scaling AI systems, the implications are clear. AI doesn’t just automate repetitive tasks; it can now handle [nuanced decision-making processes](https://openai.com/index/openai-o1-system-card/), fundamentally altering the role of human workers. In this new economy, value creation increasingly shifts from labor to ownership of technology and data. The control of AI systems and the data that powers them could lead to a concentration of wealth and power in the hands of a few, deepening inequality unless economic models are rethought.
 
-![](https://i.imgur.com/F0wAlxF.jpeg)
+![boston-dynamics-spot-and-stretch]({{site.baseurl}}/img/ai/intelligence-age/boston-dynamics-spot-and-stretch.webp)
 
 This decoupling also introduces the possibility of deflationary pressures. As the cost of goods and services declines due to AI-driven efficiencies, traditional economic growth models—based on consumption and inflation—may need to be reevaluated. Central banks and policymakers must rethink how they manage an economy where productivity surges but human labor plays a diminishing role.
 
@@ -37,7 +39,7 @@ Every major technological shift has also reshaped human identity. Just as the Ag
 
 Work has historically provided more than just income—it has been central to our sense of purpose and identity. What happens when AI automates many of the tasks that once defined professions? As AI takes over roles in healthcare, finance, manufacturing and even creative industries, society will need to find new ways to derive meaning and purpose outside of traditional employment.
 
-![](https://i.imgur.com/WhYjRqc.jpeg)
+![openai-stages-of-ai]({{site.baseurl}}/img/ai/intelligence-age/openai-stages-of-ai.webp)
 
 This shift will require a fundamental rethinking of education and skill development. The skills that AI cannot replicate—creativity, empathy, emotional intelligence—will become the most valuable human traits. Educational systems, long focused on rote learning and standardized testing, will need to adapt to prepare individuals for roles that involve higher-order thinking, adaptability, and emotional labor. AI itself could play a role in this transformation, offering personalized learning experiences tailored to each individual’s needs, democratizing access to high-quality education.
 
@@ -49,7 +51,7 @@ AI’s influence won’t stop at the borders of the workplace or the classroom. 
 
 In many ways, the AI arms race is already underway. Countries with access to vast computational resources and data ecosystems are outpacing those without, setting the stage for a new kind of geopolitical tension. Control over AI isn’t just about economic productivity; it’s about national security, surveillance capabilities, and even the ability to shape global narratives through AI-generated media and information.
 
-![](https://i.imgur.com/4BBNaoE.jpeg)
+![ai-startups-around-world]({{site.baseurl}}/img/ai/intelligence-age/ai-startups-around-world.webp)
 
 
 But AI’s geopolitical influence also presents opportunities for collaboration. Shared AI resources could help nations address global challenges, from climate change to pandemics. AI models are already being used to optimize energy grids, predict environmental changes, and model disease spread. These applications offer a glimpse of how AI, if managed collaboratively, could lead to collective global benefits rather than competitive domination.
@@ -62,7 +64,7 @@ In all of this, one thread remains constant: the ethical responsibility of those
 
 Bias in AI systems—rooted in the data they are trained on—can perpetuate and even amplify social inequalities. Privacy concerns grow as AI systems rely on vast amounts of personal data to function effectively. These challenges require more than just technical solutions; they demand a shift in how we think about transparency, accountability, and fairness in AI development.
 
-![](https://i.imgur.com/euN4rUw.png)
+![ai-ethical-perspectives]({{site.baseurl}}/img/ai/intelligence-age/ai-ethical-perspectives.webp)
 
 Ethical AI is not just a technical problem but a societal one. Ensuring that AI benefits humanity as a whole, rather than entrenching the power of a few, will require new regulatory frameworks and governance models. This is not about slowing innovation but about guiding it in a way that aligns with our collective values.
 
@@ -72,6 +74,6 @@ Just as the Cognitive Revolution set Homo sapiens apart from other species, the 
 
 The [journey](https://ourworldindata.org/technology-long-run) from the Cognitive Revolution to the Agricultural Revolution, to the Industrial Age, and now to the Intelligence Age has always been one of adaptation. Our species has thrived because of our ability to not only develop new tools but to reshape our societies around them. The question now is not whether AI will change the world—it undoubtedly will—but whether we are prepared to shape that change in ways that are equitable, ethical, and sustainable.
 
-![](https://i.imgur.com/mmNlKt6.png)
+![long-term-technology-timeline]({{site.baseurl}}/img/ai/intelligence-age/long-term-technology-timeline.webp)
 
 As we navigate this [new era](https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/), we must keep asking the big questions—about labor, value, identity, power, and ethics. Only then can we ensure that the Intelligence Age enhances, rather than diminishes, the human experience. This is the next stage in our evolutionary story, and how we respond will define the future of humanity.
