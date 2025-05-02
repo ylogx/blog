@@ -14,6 +14,9 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Copy PostCSS config to ensure Tailwind works
+COPY postcss.config.js ./
+
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
@@ -47,6 +50,8 @@ RUN chown nextjs:nodejs .next
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/_posts ./_posts
+COPY --from=builder /app/postcss.config.js ./
+COPY --from=builder /app/tailwind.config.ts ./
 
 USER nextjs
 
@@ -62,6 +67,9 @@ WORKDIR /app
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+# Copy PostCSS config to ensure Tailwind works
+COPY postcss.config.js ./
 
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV development
