@@ -2,11 +2,9 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "@/lib/api";
 import markdownToHtml from "@/lib/markdownToHtml";
-import Alert from "@/app/_components/alert";
-import Container from "@/app/_components/container";
-import Header from "@/app/_components/header";
-import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
+import markdownStyles from "@/app/_components/markdown-styles.module.css";
+import { NextPrevPosts } from "@/app/_components/next-prev-posts";
 
 type Params = {
   params: {
@@ -15,76 +13,81 @@ type Params = {
 };
 
 export default async function Post({ params }: Params) {
-  // Join all parts of the slug path
-  const slugPath = params.slug.join("/");
-
-  // Try to get the post by the full slug path
-  const post = getPostBySlug(slugPath);
+  const post = getPostBySlug(params.slug.join("/"));
 
   if (!post) {
     return notFound();
   }
+
+  // Find previous and next posts for navigation
+  const allPosts = getAllPosts();
+  const currentIndex = allPosts.findIndex(
+    (p) =>
+      p.slug === post.slug ||
+      (p.permalink &&
+        p.permalink.replace(/^\/|\/$/g, "") === params.slug.join("/"))
+  );
+  const prevPost =
+    currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+  const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
 
   const content = await markdownToHtml(post.content || "");
 
   return (
     <main>
-      <Alert preview={post.preview} />
-      <Container>
-        <Header />
-        <article className="mb-32">
-          <PostHeader
-            title={post.title}
-            coverImage={post.coverImage || post["header-img"] || ""}
-            date={post.date}
-            author={post.author}
+      <article className="mb-32">
+        <PostHeader
+          title={post.title}
+          coverImage={post.coverImage || post["header-img"] || ""}
+          date={post.date}
+          author={post.author}
+        />
+        <div className="max-w-2xl mx-auto">
+          <div
+            className={markdownStyles["markdown"]}
+            dangerouslySetInnerHTML={{ __html: content }}
           />
-          <PostBody content={content} />
-        </article>
-      </Container>
+        </div>
+
+        {/* Previous/Next Post Navigation */}
+        <NextPrevPosts prev={prevPost} next={nextPost} />
+      </article>
     </main>
   );
 }
 
-export function generateMetadata({ params }: Params): Metadata {
-  const slugPath = params.slug.join("/");
-  const post = getPostBySlug(slugPath);
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string[] };
+}): Promise<Metadata> {
+  const post = getPostBySlug(params.slug.join("/"));
 
   if (!post) {
     return notFound();
   }
 
-  const title = post.title;
-  const description = post.excerpt || post.subtitle || "";
+  const title = `${post.title}`;
 
   return {
     title,
-    description,
     openGraph: {
       title,
-      description,
-      images: post.coverImage || post["header-img"] || "",
+      images: [post.coverImage || post["header-img"] || ""],
     },
   };
 }
 
 export async function generateStaticParams() {
-  const posts = getAllPosts();
+  const posts = getAllPosts().filter(
+    (post) => post.permalink && post.permalink.includes("/")
+  );
 
   return posts.map((post) => {
-    if (post.permalink) {
-      // Clean permalink and split into path segments
-      const cleanPermalink = post.permalink.replace(/^\/|\/$/g, "");
-      const segments = cleanPermalink.split("/");
-
-      return {
-        slug: segments,
-      };
-    } else {
-      // If no permalink, use the slug directly
-      return {
-        slug: [post.slug],
-      };
-    }
+    // Remove leading and trailing slashes, then split by slashes
+    const cleanPath = post.permalink.replace(/^\/|\/$/g, "");
+    return {
+      slug: cleanPath.split("/"),
+    };
   });
 }

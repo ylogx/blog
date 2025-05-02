@@ -4,7 +4,7 @@ import Image, { ImageProps } from "next/image";
 import { useState, useEffect } from "react";
 import { isLikelyValidImagePath } from "@/lib/imageUtils";
 
-type ImageWithFallbackProps = Omit<ImageProps, 'src'> & {
+type ImageWithFallbackProps = Omit<ImageProps, "src"> & {
   src: string;
   fallbackSrc?: string;
   fallbackChain?: string[];
@@ -20,7 +20,7 @@ export default function ImageWithFallback({
   const [imgSrc, setImgSrc] = useState<string>(src);
   const [fallbackIndex, setFallbackIndex] = useState<number>(-1);
   const [isLoading, setIsLoading] = useState(true);
-  
+
   // If the src prop changes, reset to use the new source
   useEffect(() => {
     setImgSrc(src);
@@ -31,13 +31,17 @@ export default function ImageWithFallback({
   // Handle image load failure
   const handleError = () => {
     setIsLoading(false);
-    
+
     // Try the next fallback in the chain if available
-    if (fallbackChain && fallbackChain.length > 0 && fallbackIndex < fallbackChain.length - 1) {
+    if (
+      fallbackChain &&
+      fallbackChain.length > 0 &&
+      fallbackIndex < fallbackChain.length - 1
+    ) {
       const nextIndex = fallbackIndex + 1;
       setFallbackIndex(nextIndex);
       setImgSrc(fallbackChain[nextIndex]);
-    } 
+    }
     // Otherwise use the final fallback
     else {
       setImgSrc(fallbackSrc);
@@ -58,7 +62,7 @@ export default function ImageWithFallback({
       src={imgSrc}
       onError={handleError}
       onLoad={() => setIsLoading(false)}
-      className={`${props.className || ''} ${isLoading ? 'animate-pulse' : ''}`}
+      className={`${props.className || ""} ${isLoading ? "animate-pulse" : ""}`}
     />
   );
 }

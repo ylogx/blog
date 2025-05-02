@@ -10,27 +10,27 @@ type Props = {
 
 export default function Avatar({ name, picture }: Props) {
   // Format the image path correctly
-  const imageSrc = getImagePath(picture || '/assets/blog/authors/default.jpeg');
+  const imageSrc = getImagePath(picture || "/assets/blog/authors/default.jpeg");
 
   // Create fallback options for author images
   const getFallbacks = (originalPath: string) => {
     const result = [];
-    
+
     // Try different extensions
     if (originalPath.match(/\.(jpe?g|png|webp|gif|avif)$/i)) {
-      const basePath = originalPath.replace(/\.\w+$/, '');
-      ['jpeg', 'jpg', 'png', 'webp'].forEach(ext => {
+      const basePath = originalPath.replace(/\.\w+$/, "");
+      ["jpeg", "jpg", "png", "webp"].forEach((ext) => {
         result.push(`${basePath}.${ext}`);
       });
     }
-    
+
     // Try standard author image locations
     result.push(
-      '/assets/blog/authors/default.jpeg',
-      '/assets/blog/authors/default.png',
-      '/assets/blog/authors/default.webp'
+      "/assets/blog/authors/default.jpeg",
+      "/assets/blog/authors/default.png",
+      "/assets/blog/authors/default.webp"
     );
-    
+
     return result;
   };
 

@@ -5,7 +5,7 @@
 
 /**
  * Replaces Jekyll-style template variables in markdown content
- * 
+ *
  * @param content The markdown content with Jekyll variables
  * @returns The processed markdown with absolute paths
  */
@@ -19,9 +19,9 @@ export function processJekyllVariables(content: string): string {
  */
 export function processMarkdownContent(content: string): string {
   let processedContent = content;
-  
+
   // Process Jekyll variables
   processedContent = processJekyllVariables(processedContent);
-  
+
   return processedContent;
 }
