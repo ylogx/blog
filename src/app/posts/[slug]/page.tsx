@@ -37,7 +37,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
             dangerouslySetInnerHTML={{ __html: content }}
           />
         </div>
-
+        
         {/* Previous/Next Post Navigation */}
         <NextPrevPosts prev={prevPost} next={nextPost} />
       </article>
@@ -56,12 +56,15 @@ export async function generateMetadata({
     return notFound();
   }
 
-  const title = `${post.title}`;
+  const title = post.title;
+  const description = post.excerpt || post.subtitle || '';
 
   return {
     title,
+    description,
     openGraph: {
       title,
+      description,
       images: [post.coverImage || post["header-img"] || ""],
     },
   };

@@ -65,12 +65,15 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     return notFound();
   }
 
-  const title = `${post.title}`;
+  const title = post.title;
+  const description = post.excerpt || post.subtitle || '';
 
   return {
     title,
+    description,
     openGraph: {
       title,
+      description,
       images: [post.coverImage || post["header-img"] || ""],
     },
   };
