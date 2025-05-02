@@ -1,3 +1,5 @@
+"use client";
+
 import { parseISO, format } from "date-fns";
 
 type Props = {
@@ -5,8 +7,14 @@ type Props = {
 };
 
 const DateFormatter = ({ dateString }: Props) => {
-  // const date = parseISO(dateString);
-  // return <time dateTime={dateString}>{format(date, "LLLL	d, yyyy")}</time>;
+  // Check if dateString is valid
+  try {
+    const date = parseISO(dateString);
+    return <time dateTime={dateString}>{format(date, "LLLL d, yyyy")}</time>;
+  } catch (error) {
+    // Return the original string if parsing fails
+    return <time dateTime={dateString}>{dateString}</time>;
+  }
 };
 
 export default DateFormatter;

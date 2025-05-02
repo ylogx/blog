@@ -1,3 +1,5 @@
+"use client";
+
 import { Post } from "@/interfaces/post";
 import { PostPreview } from "./post-preview";
 
@@ -16,11 +18,11 @@ export function MoreStories({ posts }: Props) {
           <PostPreview
             key={post.slug}
             title={post.title}
-            coverImage={post.coverImage}
+            coverImage={post.coverImage || post["header-img"] || ""}
             date={post.date}
             author={post.author}
-            slug={post.slug}
-            excerpt={post.excerpt}
+            slug={post.permalink || post.slug}
+            excerpt={post.excerpt || post.subtitle || ""}
           />
         ))}
       </div>

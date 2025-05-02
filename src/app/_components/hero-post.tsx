@@ -1,3 +1,5 @@
+"use client";
+
 import Avatar from "@/app/_components/avatar";
 import CoverImage from "@/app/_components/cover-image";
 import { type Author } from "@/interfaces/author";
@@ -21,6 +23,17 @@ export function HeroPost({
   author,
   slug,
 }: Props) {
+  // Generate the correct link path
+  let linkPath = slug;
+  if (!linkPath.startsWith("/")) {
+    linkPath = `/posts/${linkPath}`;
+  } else {
+    linkPath = `/posts${linkPath}`;
+  }
+
+  // Remove trailing slashes for consistency
+  linkPath = linkPath.replace(/\/$/, "");
+
   return (
     <section>
       <div className="mb-8 md:mb-16">
@@ -28,8 +41,8 @@ export function HeroPost({
       </div>
       <div className="md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8 mb-20 md:mb-28">
         <div>
-          <h3 className="mb-4 text-4xl lg:text-5xl leading-tight">
-            <Link href={`/posts/${slug}`} className="hover:underline">
+          <h3 className="mb-4 text-4xl lg:text-6xl leading-tight">
+            <Link href={linkPath} className="hover:underline">
               {title}
             </Link>
           </h3>

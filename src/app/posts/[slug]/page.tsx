@@ -26,7 +26,7 @@ export default async function Post({ params }: Params) {
         <article className="mb-32">
           <PostHeader
             title={post.title}
-            coverImage={post.coverImage}
+            coverImage={post.coverImage || post["header-img"] || ""}
             date={post.date}
             author={post.author}
           />
@@ -50,13 +50,16 @@ export function generateMetadata({ params }: Params): Metadata {
     return notFound();
   }
 
-  const title = `${post.title} | Next.js Blog Example with ${CMS_NAME}`;
+  const title = post.title;
+  const description = post.excerpt || post.subtitle || "";
 
   return {
     title,
+    description,
     openGraph: {
       title,
-      // images: [post.ogImage.url],
+      description,
+      images: post.coverImage || post["header-img"] || "",
     },
   };
 }
@@ -64,7 +67,14 @@ export function generateMetadata({ params }: Params): Metadata {
 export async function generateStaticParams() {
   const posts = getAllPosts();
 
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+  return posts.map((post) => {
+    // Use permalink if defined, otherwise use slug
+    const slugPath = post.permalink
+      ? post.permalink.replace(/^\//, "").replace(/\/$/, "")
+      : post.slug;
+
+    return {
+      slug: slugPath,
+    };
+  });
 }
