@@ -13,7 +13,11 @@ type Params = {
 };
 
 export default async function Post({ params }: Params) {
-  const post = getPostBySlug(params.slug.join("/"));
+  // Join the slug segments to create a path
+  const slugPath = params.slug.join('/');
+  
+  // Try to get the post by the slug path
+  const post = getPostBySlug(slugPath);
 
   if (!post) {
     return notFound();
@@ -21,14 +25,11 @@ export default async function Post({ params }: Params) {
 
   // Find previous and next posts for navigation
   const allPosts = getAllPosts();
-  const currentIndex = allPosts.findIndex(
-    (p) =>
-      p.slug === post.slug ||
-      (p.permalink &&
-        p.permalink.replace(/^\/|\/$/g, "") === params.slug.join("/"))
+  const currentIndex = allPosts.findIndex((p) => 
+    p.slug === post.slug || 
+    (p.permalink && p.permalink.replace(/^\/|\/$/g, '') === slugPath)
   );
-  const prevPost =
-    currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+  const prevPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
   const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
 
   const content = await markdownToHtml(post.content || "");
@@ -48,7 +49,7 @@ export default async function Post({ params }: Params) {
             dangerouslySetInnerHTML={{ __html: content }}
           />
         </div>
-
+        
         {/* Previous/Next Post Navigation */}
         <NextPrevPosts prev={prevPost} next={nextPost} />
       </article>
@@ -56,12 +57,9 @@ export default async function Post({ params }: Params) {
   );
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string[] };
-}): Promise<Metadata> {
-  const post = getPostBySlug(params.slug.join("/"));
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const slugPath = params.slug.join('/');
+  const post = getPostBySlug(slugPath);
 
   if (!post) {
     return notFound();
@@ -79,15 +77,14 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const posts = getAllPosts().filter(
-    (post) => post.permalink && post.permalink.includes("/")
-  );
-
-  return posts.map((post) => {
+  const allPosts = getAllPosts();
+  const permalinkPosts = allPosts.filter(post => post.permalink && post.permalink.includes('/'));
+  
+  return permalinkPosts.map((post) => {
     // Remove leading and trailing slashes, then split by slashes
-    const cleanPath = post.permalink.replace(/^\/|\/$/g, "");
+    const cleanPath = post.permalink.replace(/^\/|\/$/g, '');
     return {
-      slug: cleanPath.split("/"),
+      slug: cleanPath.split('/')
     };
   });
 }
