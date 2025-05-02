@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  # Development service
+  blog-dev:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=development
+    volumes:
+      - ./src:/app/src
+      - ./_posts:/app/_posts
+      - ./public:/app/public
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    command: npm run dev
+    restart: unless-stopped
+
+  # Production service
+  blog-prod:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=production
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    restart: always
