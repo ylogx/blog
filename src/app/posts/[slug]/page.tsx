@@ -6,7 +6,15 @@ import markdownStyles from "@/app/_components/markdown-styles.module.css";
 import { PostHeader } from "@/app/_components/post-header";
 import { NextPrevPosts } from "@/app/_components/next-prev-posts";
 
-export default async function Post({ params }: { params: { slug: string } }) {
+// Define the proper type for the page params
+type PageParams = {
+  params: {
+    slug: string;
+  };
+  searchParams?: { [key: string]: string | string[] | undefined };
+};
+
+export default async function Post({ params }: PageParams) {
   const post = getPostBySlug(params.slug);
 
   if (!post) {
@@ -47,9 +55,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
 
 export async function generateMetadata({
   params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+}: PageParams): Promise<Metadata> {
   const post = getPostBySlug(params.slug);
 
   if (!post) {
