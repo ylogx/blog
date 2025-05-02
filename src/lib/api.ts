@@ -68,7 +68,10 @@ export function getPostBySlug(slug: string) {
     // As a fallback, try a direct filename match if the path contains slashes
     if (slug.includes('/')) {
       // Look for the file with a matching permalink in the frontmatter
-      for (const [permalink, mappedSlug] of permalinkToSlugMap.entries()) {
+      // Convert Map.entries() to array to ensure compatibility with all TypeScript targets
+      const entries = Array.from(permalinkToSlugMap.entries());
+      for (let i = 0; i < entries.length; i++) {
+        const [permalink, mappedSlug] = entries[i];
         if (permalink.includes(normalizedSlug) || normalizedSlug.includes(permalink)) {
           const matchPath = join(postsDirectory, `${mappedSlug}.md`);
           if (fs.existsSync(matchPath)) {

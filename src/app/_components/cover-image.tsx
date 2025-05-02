@@ -16,12 +16,12 @@ export default function CoverImage({ title, src, slug }: Props) {
   const imageSrc = getImagePath(src);
 
   // Generate the correct link path for permalinks
-  let linkPath = slug;
-  if (linkPath) {
-    if (!linkPath.startsWith("/")) {
-      linkPath = `/posts/${linkPath}`;
+  let linkPath = "";
+  if (slug) {
+    if (!slug.startsWith("/")) {
+      linkPath = `/posts/${slug}`;
     } else {
-      linkPath = `/posts${linkPath}`;
+      linkPath = `/posts${slug}`;
     }
 
     // Remove trailing slashes for consistency

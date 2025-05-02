@@ -80,11 +80,14 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const allPosts = getAllPosts();
+  // Get all posts with permalinks
+  const allPosts = await getAllPosts();
   const permalinkPosts = allPosts.filter(post => post.permalink && post.permalink.includes('/'));
-  
+
   return permalinkPosts.map((post) => {
-    // Remove leading and trailing slashes, then split by slashes
+    // Make sure permalink exists and remove leading and trailing slashes, then split by slashes
+    if (!post.permalink) return { slug: [] }; // Safety check, though our filter should prevent this
+    
     const cleanPath = post.permalink.replace(/^\/|\/$/g, '');
     return {
       slug: cleanPath.split('/')
