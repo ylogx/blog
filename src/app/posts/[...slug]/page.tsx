@@ -6,22 +6,8 @@ import { PostHeader } from "@/app/_components/post-header";
 import markdownStyles from "@/app/_components/markdown-styles.module.css";
 import { NextPrevPosts } from "@/app/_components/next-prev-posts";
 
-// Define the proper type for the page params
-type PageParams = {
-  params: {
-    slug: string[];
-  };
-};
-
-// Props type for the page component
-type Props = {
-  params: {
-    slug: string[];
-  };
-  searchParams?: { [key: string]: string | string[] | undefined };
-};
-
-export default async function Post({ params }: Props) {
+// Using more generic type definitions to avoid type conflicts
+export default async function Post({ params }: { params: { slug: string[] } }) {
   // Join the slug segments to create a path
   const slugPath = params.slug.join('/');
   
@@ -66,42 +52,44 @@ export default async function Post({ params }: Props) {
   );
 }
 
-export async function generateMetadata({
-  params,
-}: PageParams): Promise<Metadata> {
+export async function generateMetadata({ 
+  params 
+}: { 
+  params: { slug: string[] } 
+}): Promise<Metadata> {
   const slugPath = params.slug.join('/');
   const post = getPostBySlug(slugPath);
 
   if (!post) {
-    return notFound();
+    return {
+      title: 'Not Found',
+      description: 'The page you are looking for does not exist.',
+    };
   }
 
-  const title = post.title;
-  const description = post.excerpt || post.subtitle || '';
-
   return {
-    title,
-    description,
+    title: post.title,
+    description: post.excerpt || post.subtitle || '',
     openGraph: {
-      title,
-      description,
-      images: [post.coverImage || post["header-img"] || ""],
+      title: post.title,
+      description: post.excerpt || post.subtitle || '',
+      images: post.coverImage ? [post.coverImage] : [],
     },
   };
 }
 
 export async function generateStaticParams() {
-  // Get all posts with permalinks
-  const allPosts = getAllPosts();
-  const permalinkPosts = allPosts.filter(post => post.permalink && post.permalink.includes('/'));
-
-  return permalinkPosts.map((post) => {
-    // Make sure permalink exists and remove leading and trailing slashes, then split by slashes
-    if (!post.permalink) return { slug: [] }; // Safety check, though our filter should prevent this
+  const posts = getAllPosts();
+  
+  return posts.map((post) => {
+    // Handle both permalink and regular slug cases
+    if (post.permalink) {
+      // Remove leading/trailing slashes and split by /
+      const cleanPath = post.permalink.replace(/^\/|\/$/g, '');
+      return { slug: cleanPath.split('/') };
+    }
     
-    const cleanPath = post.permalink.replace(/^\/|\/$/g, '');
-    return {
-      slug: cleanPath.split('/')
-    };
+    // For regular slugs (without slashes), return as single-element array
+    return { slug: [post.slug] };
   });
 }
