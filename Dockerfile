@@ -25,9 +25,9 @@ ENV NEXT_TELEMETRY_DISABLED 1
 # Build the application
 ARG BUILD_MODE=production
 RUN if [ "$BUILD_MODE" = "production" ]; then \
-        npm run build; \
+    npm run build; \
     else \
-        echo "Skipping build step for development mode"; \
+    echo "Skipping build step for development mode"; \
     fi
 
 # Production image, copy all the files and run next

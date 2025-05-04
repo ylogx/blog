@@ -15,10 +15,27 @@ help:
 
 # Docker commands
 dev:
-	docker compose up blog-dev
+	docker compose up blog-dev --build
 
 prod:
-	docker compose up -d blog-prod
+	docker compose up -d blog-prod --build
+
+logs:
+	docker compose logs -f
+
+logs-dev:
+	docker-compose logs -f blog-dev
+
+logs-prod:
+	docker-compose logs -f blog-prod
+
+down: down-dev down-prod
+
+down-dev:
+	docker compose down blog-dev
+
+down-prod:
+	docker compose down blog-prod
 
 # Local development commands
 dev-local:
