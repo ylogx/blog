@@ -20,6 +20,9 @@ COPY postcss.config.js ./
 # Disable Next.js telemetry
 ENV NEXT_TELEMETRY_DISABLED 1
 
+# Enable standalone output
+ENV NEXT_OUTPUT_STANDALONE true
+
 # Build the application
 RUN npm run build
 
@@ -28,22 +31,24 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
+ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
+# Copy necessary files for production
 COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/_posts ./_posts
+COPY --from=builder /app/postcss.config.js ./postcss.config.js
+COPY --from=builder /app/tailwind.config.ts ./tailwind.config.ts
 
 # Set the correct permission for prerender cache
-RUN mkdir .next
+RUN mkdir -p .next
 RUN chown nextjs:nodejs .next
 
-# Copy necessary files for production
+# Copy standalone directory and static files
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/_posts ./_posts
-COPY --from=builder /app/postcss.config.js ./
-COPY --from=builder /app/tailwind.config.ts ./
 
 USER nextjs
 
@@ -51,5 +56,5 @@ EXPOSE 3000
 
 ENV PORT 3000
 
-# Start production server
-CMD ["npm", "run", "start"]
+# Start production server using Node directly with the server.js file that Next.js generates
+CMD ["node", "server.js"]
