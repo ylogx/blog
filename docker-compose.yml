@@ -5,27 +5,23 @@ services:
   blog-dev:
     build:
       context: .
-      dockerfile: Dockerfile
-      args:
-        - NODE_ENV=development
+      dockerfile: Dockerfile.dev
     volumes:
       - ./src:/app/src
       - ./_posts:/app/_posts
       - ./public:/app/public
+      - ./node_modules:/app/node_modules
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=development
-    command: npm run dev
     restart: unless-stopped
 
   # Production service
   blog-prod:
     build:
       context: .
-      dockerfile: Dockerfile
-      args:
-        - NODE_ENV=production
+      dockerfile: Dockerfile.prod
     ports:
       - "3000:3000"
     environment:

@@ -17,25 +17,17 @@ COPY . .
 # Copy PostCSS config to ensure Tailwind works
 COPY postcss.config.js ./
 
-# Next.js collects completely anonymous telemetry data about general usage.
-# Learn more here: https://nextjs.org/telemetry
-# Uncomment the following line in case you want to disable telemetry during the build.
+# Disable Next.js telemetry
 ENV NEXT_TELEMETRY_DISABLED 1
 
 # Build the application
-ARG BUILD_MODE=production
-RUN if [ "$BUILD_MODE" = "production" ]; then \
-    npm run build; \
-    else \
-    echo "Skipping build step for development mode"; \
-    fi
+RUN npm run build
 
 # Production image, copy all the files and run next
 FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
@@ -46,7 +38,7 @@ COPY --from=builder /app/public ./public
 RUN mkdir .next
 RUN chown nextjs:nodejs .next
 
-# Automatically leverage output traces to reduce image size
+# Copy necessary files for production
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/_posts ./_posts
@@ -59,21 +51,5 @@ EXPOSE 3000
 
 ENV PORT 3000
 
-CMD ["node", "server.js"]
-
-# Development image
-FROM base AS development
-WORKDIR /app
-
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-
-# Copy PostCSS config to ensure Tailwind works
-COPY postcss.config.js ./
-
-ENV NEXT_TELEMETRY_DISABLED 1
-ENV NODE_ENV development
-
-EXPOSE 3000
-
-CMD ["npm", "run", "dev"]
+# Start production server
+CMD ["npm", "run", "start"]

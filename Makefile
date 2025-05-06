@@ -1,4 +1,4 @@
-.PHONY: dev prod dev-local prod-local clean install update update-next dependencies-outdated help
+.PHONY: dev prod dev-local prod-local clean install update update-next dependencies-outdated docker-prune help
 
 # Default target
 help:
@@ -7,11 +7,18 @@ help:
 	@echo "  make prod           - Start the blog in production mode using Docker"
 	@echo "  make dev-local      - Start the blog in development mode locally"
 	@echo "  make prod-local     - Build and start the blog in production mode locally"
+	@echo "  make logs           - Show logs for all containers"
+	@echo "  make logs-dev       - Show logs for development container"
+	@echo "  make logs-prod      - Show logs for production container"
+	@echo "  make down           - Stop all containers"
+	@echo "  make down-dev       - Stop development container"
+	@echo "  make down-prod      - Stop production container"
 	@echo "  make clean          - Clean up build artifacts and node_modules"
 	@echo "  make install        - Install dependencies"
 	@echo "  make update         - Update all dependencies to their latest versions"
 	@echo "  make update-next    - Update Next.js to the latest version"
 	@echo "  make dependencies-outdated - Show outdated dependencies"
+	@echo "  make docker-prune   - Remove unused Docker resources"
 
 # Docker commands
 dev:
@@ -24,10 +31,10 @@ logs:
 	docker compose logs -f
 
 logs-dev:
-	docker-compose logs -f blog-dev
+	docker compose logs -f blog-dev
 
 logs-prod:
-	docker-compose logs -f blog-prod
+	docker compose logs -f blog-prod
 
 down: down-dev down-prod
 
@@ -36,6 +43,9 @@ down-dev:
 
 down-prod:
 	docker compose down blog-prod
+
+docker-prune:
+	docker system prune -f
 
 # Local development commands
 dev-local:
