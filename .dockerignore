@@ -1,8 +1,8 @@
 # Node related .dockerignore
 # Dependencies
-node_modules
+node_modules/
 # Build output
-dist
+dist/
 # Logs
 npm-debug.log
 yarn-debug.log
