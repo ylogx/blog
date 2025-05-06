@@ -6,22 +6,13 @@ import { PostHeader } from "@/app/_components/post-header";
 import markdownStyles from "@/app/_components/markdown-styles.module.css";
 import { NextPrevPosts } from "@/app/_components/next-prev-posts";
 
-// Define the proper type for the page params
-type PageParams = {
+type Params = {
   params: {
     slug: string[];
   };
 };
 
-// Props type for the page component
-type Props = {
-  params: {
-    slug: string[];
-  };
-  searchParams?: { [key: string]: string | string[] | undefined };
-};
-
-export default async function Post({ params }: Props) {
+export default async function Post({ params }: Params) {
   // Join the slug segments to create a path
   const slugPath = params.slug.join('/');
   
@@ -66,9 +57,7 @@ export default async function Post({ params }: Props) {
   );
 }
 
-export async function generateMetadata({
-  params,
-}: PageParams): Promise<Metadata> {
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const slugPath = params.slug.join('/');
   const post = getPostBySlug(slugPath);
 
@@ -92,7 +81,7 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   // Get all posts with permalinks
-  const allPosts = getAllPosts();
+  const allPosts = await getAllPosts();
   const permalinkPosts = allPosts.filter(post => post.permalink && post.permalink.includes('/'));
 
   return permalinkPosts.map((post) => {
