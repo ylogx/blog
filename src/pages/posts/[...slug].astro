@@ -1,0 +1,67 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { PostHeader } from '@/components/PostHeader';
+import { NextPrevPosts } from '@/components/NextPrevPosts';
+import { getAllPosts, getPostBySlug } from '@/lib/api';
+import markdownToHtml from '@/lib/markdownToHtml';
+import markdownStyles from '@/components/markdown-styles.module.css';
+
+export async function getStaticPaths() {
+  const posts = getAllPosts();
+
+  // Generate paths for all posts using their slug or permalink
+  const paths = posts.map((post) => {
+    const slug = post.permalink || post.slug;
+    // Remove leading/trailing slashes - keep as string for catch-all route
+    const slugString = slug.replace(/^\/|\/$/g, '');
+    return {
+      params: { slug: slugString },
+    };
+  });
+
+  return paths;
+}
+
+const { slug } = Astro.params;
+const slugString = slug || '';
+
+const post = getPostBySlug(slugString);
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+
+// Find previous and next posts for navigation
+const allPosts = getAllPosts();
+const currentIndex = allPosts.findIndex((p) => p.slug === post.slug);
+const prevPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+
+const content = await markdownToHtml(post.content || '');
+
+const title = post.title;
+const description = post.excerpt || post.subtitle || '';
+const ogImage = post.coverImage || post["header-img"] || '';
+---
+
+<Layout title={title} description={description} ogImage={ogImage}>
+  <main>
+    <article class="mb-32">
+      <PostHeader
+        client:load
+        title={post.title}
+        coverImage={post.coverImage || post["header-img"] || ""}
+        date={post.date}
+        author={post.author}
+      />
+      <div class="max-w-2xl mx-auto">
+        <div
+          class={markdownStyles.markdown}
+          set:html={content}
+        />
+      </div>
+
+      <NextPrevPosts client:load prev={prevPost} next={nextPost} />
+    </article>
+  </main>
+</Layout>

@@ -1,6 +1,6 @@
 import type { Author } from './author'
 
-export type Post = {
+export interface Post {
   slug: string
   title: string
   date: string
