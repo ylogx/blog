@@ -7,6 +7,10 @@ export default defineConfig({
     react(),
   ],
   output: 'static',
+  server: {
+    port: 3000,
+    host: true,
+  },
   vite: {
     css: {
       postcss: './postcss.config.js',
