@@ -33,18 +33,20 @@ export default function Avatar({ name, picture }: Props) {
   };
 
   return (
-    <div className="flex items-center">
-      <div className="relative w-10 h-10 mr-4">
+    <div className="flex items-center space-x-3 group">
+      <div className="relative w-12 h-12 ring-2 ring-purple-200 dark:ring-purple-800 rounded-full overflow-hidden transition-all duration-300 group-hover:ring-purple-400 dark:group-hover:ring-purple-600">
         <ImageWithFallback
           src={imageSrc}
           fill
-          className="rounded-full"
+          className="rounded-full object-cover"
           alt={name}
           fallbackSrc="/assets/blog/authors/default.jpeg"
           fallbackChain={getFallbacks(imageSrc)}
         />
       </div>
-      <div className="text-xl font-bold">{name}</div>
+      <div className="text-base md:text-lg font-semibold text-gray-900 dark:text-gray-100 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
+        {name}
+      </div>
     </div>
   );
 }

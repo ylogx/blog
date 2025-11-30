@@ -35,20 +35,27 @@ export function PostPreview({
   linkPath = linkPath.replace(/\/$/, "");
 
   return (
-    <div>
-      <div className="mb-5">
+    <article className="group relative bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 card-hover border border-gray-100 dark:border-gray-700">
+      <div className="mb-0 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
         <CoverImage slug={slug} title={title} src={coverImage} />
       </div>
-      <h3 className="text-3xl mb-3 leading-snug">
-        <a href={linkPath} className="hover:underline">
-          {title}
-        </a>
-      </h3>
-      <div className="text-lg mb-4">
-        <DateFormatter dateString={date} />
+      <div className="p-6 space-y-4">
+        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+          <DateFormatter dateString={date} />
+        </div>
+        <h3 className="text-2xl md:text-3xl font-bold leading-tight group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
+          <a href={linkPath} className="block">
+            {title}
+          </a>
+        </h3>
+        <p className="text-base md:text-lg leading-relaxed text-gray-600 dark:text-gray-300 line-clamp-3">
+          {excerpt}
+        </p>
+        <div className="pt-4 border-t border-gray-100 dark:border-gray-700">
+          <Avatar name={author.name} picture={author.picture} />
+        </div>
       </div>
-      <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
-      <Avatar name={author.name} picture={author.picture} />
-    </div>
+    </article>
   );
 }

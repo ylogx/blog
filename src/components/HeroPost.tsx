@@ -32,24 +32,32 @@ export function HeroPost({
   linkPath = linkPath.replace(/\/$/, "");
 
   return (
-    <section>
-      <div className="mb-8 md:mb-16">
-        <CoverImage title={title} src={coverImage} slug={slug} />
-      </div>
-      <div className="md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8 mb-20 md:mb-28">
-        <div>
-          <h3 className="mb-4 text-4xl lg:text-6xl leading-tight">
-            <a href={linkPath} className="hover:underline">
-              {title}
-            </a>
-          </h3>
-          <div className="mb-4 md:mb-0 text-lg">
-            <DateFormatter dateString={date} />
-          </div>
+    <section className="relative border-b border-gray-200 dark:border-gray-800 pb-16 md:pb-24">
+      <div className="space-y-8">
+        <div className="flex items-center space-x-4 text-sm md:text-base text-gray-500 dark:text-gray-400">
+          <DateFormatter dateString={date} />
+          <span>•</span>
+          <span>Featured Post</span>
         </div>
-        <div>
-          <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
+        <h3 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight font-extrabold">
+          <a
+            href={linkPath}
+            className="gradient-text-hover hover:opacity-90 transition-opacity duration-300 block"
+          >
+            {title}
+          </a>
+        </h3>
+        <p className="text-lg md:text-xl lg:text-2xl leading-relaxed text-gray-700 dark:text-gray-300 max-w-3xl">
+          {excerpt}
+        </p>
+        <div className="flex items-center space-x-4 pt-4">
           <Avatar name={author.name} picture={author.picture} />
+          <a
+            href={linkPath}
+            className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium text-sm md:text-base transition-colors"
+          >
+            Read more →
+          </a>
         </div>
       </div>
     </section>

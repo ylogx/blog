@@ -45,12 +45,12 @@ export default function CoverImage({ title, src, slug }: Props) {
   };
 
   const image = (
-    <div className="relative w-full aspect-[16/9]">
+    <div className="relative w-full aspect-[16/9] overflow-hidden image-overlay">
       <ImageWithFallback
         src={imageSrc}
         alt={`Cover Image for ${title}`}
-        className={cn("shadow-sm", {
-          "hover:shadow-lg transition-shadow duration-200": slug,
+        className={cn("w-full h-full object-cover transition-transform duration-500", {
+          "group-hover:scale-110": slug,
         })}
         fill
         sizes="(min-width: 1024px) 1200px, 100vw"

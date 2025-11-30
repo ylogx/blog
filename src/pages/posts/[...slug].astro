@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Container from '@/components/Container';
 import { PostHeader } from '@/components/PostHeader';
 import { NextPrevPosts } from '@/components/NextPrevPosts';
 import { getAllPosts, getPostBySlug } from '@/lib/api';
@@ -45,23 +46,25 @@ const ogImage = post.coverImage || post["header-img"] || '';
 ---
 
 <Layout title={title} description={description} ogImage={ogImage}>
-  <main>
+  <main class="min-h-screen bg-white dark:bg-gray-900">
     <article class="mb-32">
-      <PostHeader
-        client:load
-        title={post.title}
-        coverImage={post.coverImage || post["header-img"] || ""}
-        date={post.date}
-        author={post.author}
-      />
-      <div class="max-w-2xl mx-auto">
-        <div
-          class={markdownStyles.markdown}
-          set:html={content}
+      <Container>
+        <PostHeader
+          client:load
+          title={post.title}
+          coverImage={post.coverImage || post["header-img"] || ""}
+          date={post.date}
+          author={post.author}
         />
-      </div>
+        <div class="max-w-3xl mx-auto px-4 pt-8">
+          <div
+            class={markdownStyles.markdown}
+            set:html={content}
+          />
+        </div>
 
-      <NextPrevPosts client:load prev={prevPost} next={nextPost} />
+        <NextPrevPosts client:load prev={prevPost} next={nextPost} />
+      </Container>
     </article>
   </main>
 </Layout>
