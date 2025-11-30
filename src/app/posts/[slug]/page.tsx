@@ -6,8 +6,13 @@ import markdownStyles from "@/app/_components/markdown-styles.module.css";
 import { PostHeader } from "@/app/_components/post-header";
 import { NextPrevPosts } from "@/app/_components/next-prev-posts";
 
-export default async function Post({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug);
+export default async function Post({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
 
   if (!post) {
     return notFound();
@@ -37,7 +42,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
             dangerouslySetInnerHTML={{ __html: content }}
           />
         </div>
-        
+
         {/* Previous/Next Post Navigation */}
         <NextPrevPosts prev={prevPost} next={nextPost} />
       </article>
@@ -48,16 +53,17 @@ export default async function Post({ params }: { params: { slug: string } }) {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const post = getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
 
   if (!post) {
     return notFound();
   }
 
   const title = post.title;
-  const description = post.excerpt || post.subtitle || '';
+  const description = post.excerpt || post.subtitle || "";
 
   return {
     title,
