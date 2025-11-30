@@ -44,33 +44,32 @@ export default function CoverImage({ title, src, slug }: Props) {
     return result;
   };
 
-  const image = (
-    <div className="relative w-full aspect-[16/9] overflow-hidden image-overlay">
-      <ImageWithFallback
-        src={imageSrc}
-        alt={`Cover Image for ${title}`}
-        className={cn("w-full h-full object-cover transition-transform duration-500", {
-          "group-hover:scale-110": slug,
-        })}
-        fill
-        sizes="(min-width: 1024px) 1200px, 100vw"
-        style={{ objectFit: "cover" }}
-        priority
-        fallbackSrc="/assets/blog/default-cover.webp"
-        fallbackChain={getFallbacks(imageSrc)}
-      />
-    </div>
+  // The parent container should have position: relative and explicit dimensions
+  const imageElement = (
+    <ImageWithFallback
+      src={imageSrc}
+      alt={`Cover Image for ${title}`}
+      className={cn("object-cover transition-transform duration-500", {
+        "group-hover:scale-110": slug,
+      })}
+      fill={true}
+      sizes="(min-width: 1024px) 1200px, 100vw"
+      style={{ objectFit: "cover" }}
+      priority
+      fallbackSrc="/assets/blog/default-cover.webp"
+      fallbackChain={getFallbacks(imageSrc)}
+    />
   );
 
-  return (
-    <div className="sm:mx-0">
-      {slug ? (
-        <a href={linkPath} aria-label={title}>
-          {image}
-        </a>
-      ) : (
-        image
-      )}
-    </div>
-  );
+  // If there's a slug, wrap in link that covers the entire area
+  if (slug) {
+    return (
+      <>
+        {imageElement}
+        <a href={linkPath} aria-label={title} className="absolute inset-0 z-10"></a>
+      </>
+    );
+  }
+
+  return imageElement;
 }

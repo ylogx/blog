@@ -2,7 +2,7 @@ import Container from "./Container";
 
 export function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-transparent to-gray-50 dark:to-gray-900 border-t border-gray-200 dark:border-gray-800 mt-20">
+    <footer className="bg-transparent border-t border-gray-200 dark:border-gray-800 mt-20">
       <Container>
         <div className="py-12 flex flex-col items-center space-y-4">
           <div className="h-px w-24 bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
